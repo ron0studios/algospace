@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProblemsView from '@/views/ProblemsView.vue'
-import ProblemDetailsView from "@/views/ProblemDetailsView"
+import ProblemDetailsView from "@/views/ProblemDetailsView.vue"
 
 const routes = [
   {
@@ -23,7 +23,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes
 })
 
