@@ -19,4 +19,36 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const projectFirestore = getFirestore()
 
+
+/*
+const choice = inp => {
+  return inp[Math.round(Math.random()*(inp.length-1))]
+}
+
+for(let i = 0; i < 100; i++)
+{
+  let out = "a"
+  let tag = []
+  for(let j = 0; j < 10; j++)
+  {
+    out += choice(" abcdefghijklmnopqrstuvwxyz")
+  }
+  for(let j = 0; j < Math.random()*5; j++)
+  {
+    tag.push(choice(["dp","bfs","dfs","trees","graphs","bruteforce","segment","greedy","maths"]))
+  }
+
+  const obj = {
+    contest: choice(["BIO", "USACO", "IOI", "CF", "HR"]),
+    difficulty: choice(["EASY", "MEDIUM", "HARD", "INSANE"]), 
+    tags: tag,
+    title: out
+  }
+  console.log(obj)
+
+  addDoc(collection(projectFirestore,"problems"),obj)
+}
+*/
+
+
 export { projectFirestore }

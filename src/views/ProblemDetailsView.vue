@@ -1,12 +1,24 @@
 <template>
   <div class="problem_details">
-    <p>{{id}}</p>
+    <div v-if="problem">
+      <h1>{{problem.title}}</h1>
+      <p v-for="tag in problem.tags" :key="tag">{{tag}}</p>
+    </div>
   </div>
 </template>
 
 <script>
+import getProblem from "@/composables/getProblem"
+
 export default {
-    props: ['id']
+  props: ['id'],
+  setup(props)
+  {
+    const {problem, load, error} = getProblem(props.id)
+    load()
+
+    return {problem, error}
+  }
 }
 </script>
 

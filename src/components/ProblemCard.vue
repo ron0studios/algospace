@@ -1,9 +1,14 @@
 <template>
-  <router-link :to="{name: 'problemDetails', params: {id: data.id}}" class="card" :style="{'border-left-color': style}"> 
+  <router-link :to="{name: 'problemDetails', params: {id: data.id}}" class="card" :style="{'border-left-color': style}">  
     <div class="card__content">
         <div class="details">
-            <h1 class="title">{{ data.title }} </h1>
-            <div class="difficulty" :style="{color: style}">{{data.difficulty}}</div>
+            <div>
+                <h1 class="title">{{ data.title }} </h1>
+                <div class="difficulty" :style="{color: style}">{{data.difficulty}}</div>
+            </div>
+            <div>
+                <p class="problem-type">{{data.contest}}</p>
+            </div>
         </div>
         <div class="tags">
             <router-link class="pill" :to="{name: 'home'}" v-for="tag in data.tags" :key="tag">{{tag}}</router-link>
@@ -52,6 +57,21 @@ export default {
 </script>
 
 <style scoped>
+.details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.problem-type {
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: .1em;
+    color: gray;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
 .tags {
     position: absolute;
     bottom: 10px;
