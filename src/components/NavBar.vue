@@ -73,7 +73,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
-  background-color: #2c3e50;
+  background-color: rgb(57, 57, 87);
   height: 50px;
 
 }

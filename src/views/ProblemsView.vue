@@ -3,11 +3,12 @@
   <div class="panel__problems--wrapper">
     <div class="filters">
       <div class="filter pill">
-        <span class="material-symbols-outlined">tune</span>
+        <span class="material-symbols-outlined tuneicon">tune</span>
         filter
       </div>
-      <div class="search">
-        <input type="text" placeholder="search...">
+      <div class="search--wrapper">
+        <input class="search" type="text" placeholder="search...">
+        <span class="material-symbols-outlined searchicon">search</span>
       </div>
       <div class="tags">
 
@@ -56,7 +57,46 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 700,
+  'GRAD' -25,
+  'opsz' 48
+}
+</style>
+
+<style scoped>
+.search {
+  width: 200px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+}
+
+
+.search:focus ~ .searchicon {
+  display: none;
+}
+
+.searchicon {
+  margin: 5px;
+}
+
+.closeicon {
+  margin: 5px;
+}
+
+.search--wrapper {
+  border: 2px solid rgba(219, 204, 255,0.5);
+  border-radius: 10px;
+ /* border-bottom: 2px solid rgba(255,255,255,.5);*/
+}
+
 .filter {
   color: white;
 }
@@ -66,6 +106,7 @@ export default {
   max-width: 900px;
   margin: 10px auto;
   display: flex;
+  align-items: center;
 }
 
 .line {
@@ -112,14 +153,23 @@ export default {
 }
 
 .pill {
-    margin: 5px 10px;
+    margin-right: 1em;
     padding: 5px 10px;
-    background: rgb(29, 16, 46);
-    color: rgb(219, 204, 255);
+    cursor: pointer;
+    /*border: 2px solid rgb(219, 204, 255);*/
     border-radius: 10px;
+}
+.pill:hover {
+    color: rgb(29, 16, 46);
+    background: rgb(219, 204, 255);
     text-decoration: none;
     display: inline-block;
-
+}
+.pill:hover .tuneicon{
+  color: black;
+}
+.pill .tuneicon {
+  margin-right: 0;
 }
 
 </style>

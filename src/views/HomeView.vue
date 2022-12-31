@@ -86,7 +86,7 @@ export default {
 .hero {
     height: 50vh;
     width: 100%;
-    background: #1e2933;
+    background: #241e33;
     display: flex;
     flex-direction: column;
     justify-content: center;

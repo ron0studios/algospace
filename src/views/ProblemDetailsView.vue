@@ -2,6 +2,7 @@
   <div class="problem_details">
     <div v-if="problem">
       <h1>{{problem.title}}</h1>
+
       <p v-for="tag in problem.tags" :key="tag">{{tag}}</p>
     </div>
   </div>
