@@ -1,14 +1,34 @@
 <template>
 <div class="problems">
   <div class="panel__problems--wrapper">
+    <div class="pickers">
+      <div class="card">
+        <div class="icon">
+          <img src="../assets/dice-five-solid.svg" alt="dice">
+        </div>
+        <p>random problem</p>
+      </div>
+      <div class="card"> 
+        <div class="icon">
+          <img src="../assets/skull-solid.svg" alt="skull">
+        </div>
+        <p>daily problem</p>
+      </div>
+      <div class="card">
+        <div class="icon">
+          <img src="../assets/cubes-solid.svg" alt="cubes">
+        </div>
+        <p>problem tiers</p>
+      </div>
+    </div>
     <div class="filters">
       <div class="filter pill">
         <span class="material-symbols-outlined tuneicon">tune</span>
         filter
       </div>
-      <div class="search--wrapper">
-        <input class="search" type="text" placeholder="search...">
+      <div class="search--wrapper" >
         <span class="material-symbols-outlined searchicon">search</span>
+        <input class="search" type="text" placeholder="search...">
       </div>
       <div class="tags">
 
@@ -68,6 +88,58 @@ export default {
 </style>
 
 <style scoped>
+
+.problems .card:hover {
+  background: rgb(219, 204, 255);
+}
+
+.problems .card:hover .icon > img {
+  filter: invert(9%) sepia(13%) saturate(3783%) hue-rotate(230deg) brightness(91%) contrast(101%);
+}
+
+.problems .card:hover > p {
+  color: rgb(29, 16, 46)
+}
+
+.problems .card > p {
+  font-size: 24px;
+  color: #7f7694;
+}
+
+.problems .card > .icon {
+  box-sizing: border-box;
+  width: 50%;
+  height: 50%;
+  margin-top: 10%;
+  display: flex;
+}
+
+.icon > img {
+  align-self: flex-end;
+  filter: invert(49%) sepia(9%) saturate(983%) hue-rotate(217deg) brightness(96%) contrast(84%);
+}
+
+
+.pickers {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.pickers .card {
+  cursor: pointer;
+  width: calc(100% / 3 - 30px);
+  aspect-ratio: 1 / 1;
+  background: rgb(29, 16, 46);;
+  margin: 15px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .search {
   width: 200px;
   background-color: transparent;
@@ -75,27 +147,34 @@ export default {
   outline: none;
   color: white;
   text-decoration: none;
-  padding: 5px;
+
+  box-sizing: border-box;
 }
 
-
-.search:focus ~ .searchicon {
-  display: none;
+.search--wrapper {
+    margin-right: 1em;
+    padding: 5px 10px;
+    cursor: pointer;
+    /*border: 2px solid rgb(219, 204, 255);*/
+    background: rgb(29, 16, 46);
+    border-radius: 10px;
+    display: inline-block;
 }
 
 .searchicon {
-  margin: 5px;
+  box-sizing: border-box;
 }
 
 .closeicon {
   margin: 5px;
+  box-sizing: border-box;
 }
 
+/*
 .search--wrapper {
-  border: 2px solid rgba(219, 204, 255,0.5);
-  border-radius: 10px;
- /* border-bottom: 2px solid rgba(255,255,255,.5);*/
+  border-bottom: 2px solid rgba(255,255,255,.5);
 }
+*/
 
 .filter {
   color: white;
@@ -107,6 +186,11 @@ export default {
   margin: 10px auto;
   display: flex;
   align-items: center;
+  /*
+  background: rgb(29, 16, 46);
+  padding: 10px;
+  border-radius: 10px;
+  */
 }
 
 .line {
@@ -157,13 +241,15 @@ export default {
     padding: 5px 10px;
     cursor: pointer;
     /*border: 2px solid rgb(219, 204, 255);*/
+    background: rgb(29, 16, 46);
     border-radius: 10px;
+    display: inline-block;
 }
+
 .pill:hover {
     color: rgb(29, 16, 46);
     background: rgb(219, 204, 255);
     text-decoration: none;
-    display: inline-block;
 }
 .pill:hover .tuneicon{
   color: black;
