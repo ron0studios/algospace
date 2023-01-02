@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{name: 'problemDetails', params: {id: data.id}}" class="card" :style="{'border-left-color': style}">  
+  <router-link :to="{name: 'problemDetails', params: {id: data.id}}" class="problem-card" :style="{'border-left-color': style}">  
     <div class="card__content">
         <div class="details">
             <div>
@@ -103,7 +103,8 @@ h1.title {
     font-size: 15px;
 }
 
-.card {
+
+.problem-card {
   background: #2e296b;
   border-radius: 10px;
   border-left: 10px solid gray;
