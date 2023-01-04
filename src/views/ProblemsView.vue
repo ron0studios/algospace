@@ -12,13 +12,14 @@
         <div class="icon">
           <img src="../assets/skull-solid.svg" alt="skull">
         </div>
-        <p>daily problem</p>
+        <p>weekly problem</p>
+        <div class="timer">6d 23h 30m</div>
       </div>
       <div class="card">
         <div class="icon">
           <img src="../assets/cubes-solid.svg" alt="cubes">
         </div>
-        <p>problem tiers</p>
+        <p>more resources</p>
       </div>
     </div>
     <div class="filters">
@@ -89,6 +90,19 @@ export default {
 
 <style scoped>
 
+.problems .card .timer {
+  position: absolute;
+  bottom: -10px;
+  left: 2em;
+  color: rgb(0,0,0);
+  font-weight: bold;
+  background: lime;
+  border: solid 3px rgb(27, 27, 63);
+  box-shadow: 0px 0px 0px 3px rgb(27,27,63);
+  border-radius: 10px;
+  padding: 5px;
+}
+
 .problems .card:hover {
   background: rgb(219, 204, 255);
 }
@@ -138,6 +152,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .search {

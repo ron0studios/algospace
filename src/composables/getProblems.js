@@ -1,6 +1,6 @@
 import {ref } from 'vue'
 import { projectFirestore } from '@/firebase/config';
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, query, limit} from 'firebase/firestore'
 
 const getProblems = () => {
     const problems = ref([])
@@ -9,7 +9,7 @@ const getProblems = () => {
     const load = async () => {
       console.log("running load...")
       try {
-        const res = await getDocs(collection(projectFirestore, 'problems'))
+        const res = await getDocs(query(collection(projectFirestore, 'problems'), limit(20)))
         problems.value = res.docs.map(doc => {
           return {...doc.data(), id: doc.id}
         })
@@ -19,6 +19,7 @@ const getProblems = () => {
         console.log(err.value)
       }
     }
+
 
 
     return {problems, error, load}
