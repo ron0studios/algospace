@@ -3,7 +3,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import {ref } from 'vue'
 
 const getProblem = (id)=>{
-    const post = ref(null)
+    const problem = ref(null)
     const error = ref(null);
     
     const load = async () => {
@@ -13,7 +13,7 @@ const getProblem = (id)=>{
         if(!res.exists){
           throw Error('post doesnt exist')
         }
-        post.value = {...res.data(),id: res.id}
+        problem.value = {...res.data(),id: res.id}
       }
       catch (err){
         error.value = err.message
@@ -21,7 +21,7 @@ const getProblem = (id)=>{
       }
     }
 
-    return {post, error, load}
+    return {problem, error, load}
 }
 
 export default getProblem

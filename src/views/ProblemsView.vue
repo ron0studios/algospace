@@ -36,6 +36,11 @@
       </div>
     </div>
     <div class="line"></div>
+    <div class="pagineate">
+      <button class="page_left" @click="left">&lt;</button>
+      <span class="count" @click="right">1</span>
+      <button class="page_right" @click="right">></button>
+    </div>
     <div class="panel__problems" v-if="problems.length">
       <ProblemCard  v-for="problem in problems" :key="problem.id" :data="problem"/>
 
@@ -66,14 +71,14 @@ export default {
   setup()
   {
     const store = useProblemsStore()
-    const { problems, error } = storeToRefs(store)
-    const { load } = store
+    const { problems, error} = storeToRefs(store)
+    const { load, left, right } = store
     if(error.value)
     {
       load()
     }
 
-    return { problems, error }
+    return { problems, error, left, right}
   }
 }
 </script>
@@ -90,15 +95,21 @@ export default {
 
 <style scoped>
 
+.problems .pagineate {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .problems .card .timer {
   position: absolute;
   bottom: -10px;
   left: 2em;
   color: rgb(0,0,0);
   font-weight: bold;
-  background: lime;
-  border: solid 3px rgb(27, 27, 63);
-  box-shadow: 0px 0px 0px 3px rgb(27,27,63);
+  background: skyblue;
+  border: solid 3px rgb(29, 16, 46);
+  box-shadow: 0px 0px 0px 3px rgb(29, 16, 46);
   border-radius: 10px;
   padding: 5px;
 }
@@ -117,7 +128,7 @@ export default {
 
 .problems .card > p {
   font-size: 24px;
-  color: #7f7694;
+  color: #fff;
 }
 
 .problems .card > .icon {
@@ -130,7 +141,8 @@ export default {
 
 .icon > img {
   align-self: flex-end;
-  filter: invert(49%) sepia(9%) saturate(983%) hue-rotate(217deg) brightness(96%) contrast(84%);
+  filter: invert(100%);
+  /*filter: invert(49%) sepia(9%) saturate(983%) hue-rotate(217deg) brightness(96%) contrast(84%);*/
 }
 
 
@@ -146,7 +158,7 @@ export default {
   cursor: pointer;
   width: calc(100% / 3 - 30px);
   aspect-ratio: 1 / 1;
-  background: rgb(29, 16, 46);;
+  background: #2e296b; 
   margin: 15px;
   border-radius: 20px;
   display: flex;
@@ -171,7 +183,7 @@ export default {
     padding: 5px 10px;
     cursor: pointer;
     /*border: 2px solid rgb(219, 204, 255);*/
-    background: rgb(29, 16, 46);
+    background: rgb(71, 13, 146); /*rgb(29, 16, 46);*/
     border-radius: 10px;
     display: inline-block;
 }
@@ -246,7 +258,7 @@ export default {
 
 .panel__problems--wrapper {
   overflow: scroll;
-  background: rgb(27, 27, 63);
+  background: rgb(29, 16, 46); 
   width: 100%;
   height: 100%;
 }
@@ -256,7 +268,7 @@ export default {
     padding: 5px 10px;
     cursor: pointer;
     /*border: 2px solid rgb(219, 204, 255);*/
-    background: rgb(29, 16, 46);
+    background: rgb(71, 13, 146);
     border-radius: 10px;
     display: inline-block;
 }
