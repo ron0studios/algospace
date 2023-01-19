@@ -1,6 +1,6 @@
 import {ref } from 'vue'
 import { projectFirestore } from '@/firebase/config';
-import { collection, getDocs, query, limit, startAfter, orderBy, getDoc, doc} from 'firebase/firestore'
+import { collection, getDocs, query, limit, startAfter, orderBy, getDoc, doc, endBefore, limitToLast} from 'firebase/firestore'
 
 const getProblems = () => {
     const problems = ref([])
@@ -23,6 +23,22 @@ const getProblems = () => {
 
     const left = async () => {
       console.log("running switch...")
+      try {
+        console.log(pagecount)
+        const res = await getDocs(query(collection(projectFirestore, 'problems'), orderBy("difficulty"), endBefore(await getDoc(doc(projectFirestore,"problems",problems.value.at(0).id))) , limitToLast(10)))
+        console.log(res.docs[0].data())
+        problems.value = res.docs.map(doc => {
+          return {...doc.data(), id: doc.id}
+        })
+      }
+      catch (err){
+        error.value = err.message
+        console.log(err.message)
+      }
+
+      if(!error.value) {
+        pagecount -= 10;
+      }
     }
     const right = async () => {
       console.log("running switch...")
