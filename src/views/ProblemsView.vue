@@ -36,11 +36,6 @@
       </div>
     </div>
     <div class="line"></div>
-    <div class="pagineate">
-      <button class="page_left" @click="left">&lt;</button>
-      <span class="count" @click="right">1</span>
-      <button class="page_right" @click="right">></button>
-    </div>
     <div class="panel__problems" v-if="problems.length">
       <ProblemCard  v-for="problem in problems" :key="problem.id" :data="problem"/>
 
@@ -56,6 +51,11 @@
       -->
     </div>
     <LoadingSpinner v-else/>
+    <div class="pagineate">
+      <button class="page_left" @click="left">&lt;</button>
+      <span class="count" >{{page}}</span>
+      <button class="page_right" @click="right">></button>
+    </div>
   </div>
 </div>
 </template>
@@ -65,25 +65,35 @@ import ProblemCard from "@/components/ProblemCard.vue"
 import LoadingSpinner from "@/components/LoadingSpinner.vue"
 import { useProblemsStore } from "@/store"
 import { storeToRefs } from 'pinia'
+import { watch } from '@vue/runtime-core'
 
 export default {
   components: { ProblemCard, LoadingSpinner },
   setup()
   {
     const store = useProblemsStore()
-    const { problems, error} = storeToRefs(store)
+    const { problems, error, page} = storeToRefs(store)
     const { load, left, right } = store
     if(error.value)
     {
       load()
     }
 
-    return { problems, error, left, right}
+    watch(page, (newver, old) => {
+      console.log(newver)
+    })
+
+    return { problems, error, left, right, page}
   }
 }
 </script>
 
 <style scoped>
+.count {
+  color: white;
+  padding: 0 50px;
+}
+
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
