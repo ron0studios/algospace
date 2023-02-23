@@ -13,7 +13,7 @@ const runProgram = async (code, language) => {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({hi:"hey"})
+                body: JSON.stringify({code:code,language:language})
             })
             .then(response => response.json())
             .then(response => console.log(JSON.stringify(response)))
