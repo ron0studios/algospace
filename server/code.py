@@ -1,3 +1,2 @@
 x = int(input())
-for i in range(x):
-    print(i)
+print((x*(x+1))/2)
