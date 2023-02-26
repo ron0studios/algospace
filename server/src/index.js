@@ -25,6 +25,7 @@ const runTest = (testcase, expected) => {
 
       python.stdin.write(testcase.toString())
       python.stdin.end()
+      let result = null;
 
       python.stdout.on('data', (data) => {
           console.log('Pipe data from python script ...');
@@ -67,8 +68,12 @@ app.post("/submit", async (req,res) => {
 
     for(let i = 0; i < testcases.length; i++){
         console.log(i)
-        results.push(await runTest(testcases[i],answers[i]))
-        
+        let tc = await runTest(testcases[i],answers[i]);
+        results.push(tc)
+        if(tc != "AC")
+        {
+          break;
+        }
     }
 
     res.json({output: results})
