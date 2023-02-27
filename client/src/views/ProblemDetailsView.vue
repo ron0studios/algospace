@@ -32,7 +32,8 @@ export default {
   setup(props)
   {
     const {problem, load, error} = getProblem(props.id)
-    load()
+
+    //load()
 
     const language = ref("");
     const code = ref("");
@@ -41,6 +42,7 @@ export default {
     const submitForm = async () => {
       runProgram(code.value, language.value)
     }
+
 
     return {problem, error, submitForm, language, code}
   }
