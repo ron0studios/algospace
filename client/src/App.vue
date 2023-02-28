@@ -11,3 +11,9 @@ export default {
   }
 }
 </script>
+
+<style>
+#app {
+  font-family: Cantarell, Avenir, Arial, sans-serif; 
+}
+</style>
