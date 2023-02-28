@@ -20,11 +20,9 @@ std::pair<T,U> operator+(const std::pair<T,U> & l,const std::pair<T,U> & r) {
 
 void solve()
 {
-	unsigned ll n; cin >> n;
-	//vector<int> a;
-        //cout << a[1];
+	ll n; cin >> n;
 	cout << (n*(n+1))/ 2 << endl;
-        if(n%2==0) cout << "a";
+        if(n%2==0) cout << "even";
 }
 
 int main()

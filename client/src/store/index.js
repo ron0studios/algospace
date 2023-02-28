@@ -7,3 +7,4 @@ export const useProblemsStore = defineStore('problems', () => {
 
   return {problems, error, load, left, right, page, tot_problems}
 })
+
