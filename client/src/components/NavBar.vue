@@ -29,8 +29,8 @@ export default {
   components: {DropDown},
   setup()
   {
-    const algospace_white = ref('./src/assets/algospace_white.png')
-    const testuserlogo = ref('./src/assets/testuserlogo.png')
+    const algospace_white = ref('/src/assets/algospace_white.png')
+    const testuserlogo = ref('/src/assets/testuserlogo.png')
     return {algospace_white, testuserlogo}
   }
 }
