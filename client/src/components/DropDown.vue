@@ -1,5 +1,6 @@
 <template>
 <div @click="toggle">
+    <div :class="{hide: hidden}" class="background"></div>
     <div class="dropdown"><a>Divisions</a><span class="material-symbols-outlined">expand_more</span></div>
     <div :class="{hide: hidden}" class="dropdown__panel">
       <router-link class="dropdown__panel--link" :to="{name:'home'}">Easy     </router-link>
@@ -16,9 +17,10 @@ import { ref } from '@vue/reactivity'
 export default {
   setup()
   {
+  
     const hidden = ref(true)
     const toggle = () => {
-
+      console.log("toggle")
       hidden.value = !hidden.value
     }
     return {hidden, toggle}
@@ -27,6 +29,15 @@ export default {
 </script>
 
 <style>
+.background {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  color: blue;
+  left: 0;
+  top: 0;
+}
+
 .hide {
   opacity: 0;
   pointer-events: none;
