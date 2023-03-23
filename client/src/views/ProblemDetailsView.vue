@@ -5,7 +5,7 @@
 
       <p class="tags" v-for="tag in problem.tags" :key="tag">{{tag}}</p>
 
-      <vue-markdown :source="problem.content.replaceAll('\\n','\n')" :options="{}"/>
+      <div v-html="markdown"></div>
 
     </div>
 
@@ -31,13 +31,13 @@
 import getProblem from "@/composables/getProblem"
 import { ref } from '@vue/reactivity'
 import runProgram from '@/judge'
-import VueMarkdown from '@/components/Markdown'
+import { marked } from 'marked'
+import markedKatex from 'marked-katex-extension'
+import 'katex/dist/katex.css'
+import { computed } from "vue"
 
 export default {
   props: ['id'],
-  components: {
-    VueMarkdown
-  },
   setup(props)
   {
     const {problem, load, error} = getProblem(props.id)
@@ -45,6 +45,13 @@ export default {
     load().then(()=>{
       //problem.value.content.replaceAll("\\n","\n")
     })
+
+
+
+    marked.use(markedKatex({}))
+
+    const markdown = computed(()=>{return marked(problem.value.content.replaceAll('\\n','\n'), {})})
+
 
     const language = ref("");
     const code = ref("");
@@ -54,15 +61,12 @@ export default {
     }
 
 
-    return {problem, error, submitForm, language, code}
+    return {problem, error, submitForm, language, code, markdown}
   }
 }
 </script>
 
 <style>
-.katex-html {
-  display: none;
-}
 
 .submit {
   margin: 0 auto;
