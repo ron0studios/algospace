@@ -1,12 +1,15 @@
 <template>
   <div class="problem_details">
-    <div v-if="problem">
+    <div class="statement" v-if="problem">
       <h1>{{problem.title}}</h1>
 
-      <p v-for="tag in problem.tags" :key="tag">{{tag}}</p>
+      <p class="tags" v-for="tag in problem.tags" :key="tag">{{tag}}</p>
+
+      <vue-markdown :source="problem.content.replaceAll('\\n','\n')" :options="{}"/>
+
     </div>
 
-    <div class="statement__panel">
+    <div class="submit">
       <form @submit.prevent="submitForm" class="form">
           <label>Programming language:</label>
           <select required title="programming language" v-model="language">
@@ -28,18 +31,23 @@
 import getProblem from "@/composables/getProblem"
 import { ref } from '@vue/reactivity'
 import runProgram from '@/judge'
+import VueMarkdown from '@/components/Markdown'
 
 export default {
   props: ['id'],
+  components: {
+    VueMarkdown
+  },
   setup(props)
   {
     const {problem, load, error} = getProblem(props.id)
 
-    //load()
+    load().then(()=>{
+      //problem.value.content.replaceAll("\\n","\n")
+    })
 
     const language = ref("");
     const code = ref("");
-
 
     const submitForm = async () => {
       runProgram(code.value, language.value)
@@ -52,10 +60,19 @@ export default {
 </script>
 
 <style>
-.statement__panel {
+.katex-html {
+  display: none;
+}
+
+.submit {
   margin: 0 auto;
   width: 70%;
   display: flex;
+}
+
+.statement {
+  margin: 0 auto;
+  width: 70%;
 }
 
 

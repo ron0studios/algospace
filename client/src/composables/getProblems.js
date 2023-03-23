@@ -17,7 +17,7 @@ const getProblems = () => {
 
       console.log("running load...")
       try {
-        const res = await getDocs(query(collection(projectFirestore, 'problems'), orderBy("difficulty"), limit(pagecount)))
+        const res = await getDocs(query(collection(projectFirestore, 'problems'), orderBy("title"), limit(pagecount)))
         problems.value = res.docs.map(doc => {
           return {...doc.data(), id: doc.id}
         })
@@ -48,7 +48,7 @@ const getProblems = () => {
 
       try {
         //console.log(pagecount)
-        const res = await getDocs(query(collection(projectFirestore, 'problems'), orderBy("difficulty"), endBefore(await getDoc(doc(projectFirestore,"problems",problems.value.at(0).id))) , limitToLast(pagecount)))
+        const res = await getDocs(query(collection(projectFirestore, 'problems'), orderBy("title"), endBefore(await getDoc(doc(projectFirestore,"problems",problems.value.at(0).id))) , limitToLast(pagecount)))
         //console.log(res.docs[0].data())
         problems.value = res.docs.map(doc => {
           return {...doc.data(), id: doc.id}
@@ -75,7 +75,7 @@ const getProblems = () => {
       console.log("running switch...")
       try {
         //console.log(pagecount)
-        const res = await getDocs(query(collection(projectFirestore, 'problems'), orderBy("difficulty"), startAfter(await getDoc(doc(projectFirestore,"problems",problems.value.at(-1).id))) , limit(pagecount)))
+        const res = await getDocs(query(collection(projectFirestore, 'problems'), orderBy("title"), startAfter(await getDoc(doc(projectFirestore,"problems",problems.value.at(-1).id))) , limit(pagecount)))
         //console.log(res.docs[0].data())
         if(res.docs.length <= 0){ 
           loading = false;

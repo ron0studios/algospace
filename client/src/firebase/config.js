@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore"
+import { addDoc, collection, getFirestore } from "firebase/firestore"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,9 +25,9 @@ const choice = inp => {
   return inp[Math.round(Math.random()*(inp.length-1))]
 }
 
-for(let i = 0; i < 100; i++)
+for(let i = 0; i < 10; i++)
 {
-  let out = "a"
+  let out = "ZZFillerProblem"
   let tag = []
   for(let j = 0; j < 10; j++)
   {

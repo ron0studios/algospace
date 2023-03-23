@@ -10,8 +10,12 @@
   },
   "dependencies": {
     "firebase": "^9.15.0",
+    "katex": "^0.16.4",
+    "markdown-it": "^13.0.1",
+    "markdown-it-katex": "^2.0.3",
     "pinia": "^2.0.28",
     "vue": "^3.2.45",
+    "vue-markdown-render": "^2.0.1",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
