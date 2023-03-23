@@ -7,6 +7,7 @@
 
       <div v-html="markdown"></div>
 
+
     </div>
 
     <div class="submit">
@@ -20,7 +21,8 @@
             <option value="c">C11</option>
           </select>
           <label>Code:</label>
-          <textarea required v-model="code"></textarea>
+          <!-- <textarea required v-model="code"></textarea> -->
+          <codemirror v-model="code"/>
           <button>submit</button>
       </form>
     </div>
@@ -35,6 +37,7 @@ import { marked } from 'marked'
 import markedKatex from 'marked-katex-extension'
 import 'katex/dist/katex.css'
 import { computed } from "vue"
+
 
 export default {
   props: ['id'],
