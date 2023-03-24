@@ -1,15 +1,20 @@
 <template>
   <div class="problem_details">
     <div class="statement" v-if="problem">
-      <h1>{{problem.title}}</h1>
-
-      <p class="tags" v-for="tag in problem.tags" :key="tag">{{tag}}</p>
-
-      <div v-html="markdown"></div>
-
-
+      <div class="statement--inner">
+        <h1>{{problem.title}}</h1>
+        <div v-html="markdown"></div>
+      </div>
     </div>
+    <div class="submit">
+      <codemirror class="editor" v-model="code" />
+    </div>
+  </div>
+</template>
 
+<script>
+
+/*
     <div class="submit">
       <form @submit.prevent="submitForm" class="form">
           <label>Programming language:</label>
@@ -22,14 +27,11 @@
           </select>
           <label>Code:</label>
           <!-- <textarea required v-model="code"></textarea> -->
-          <codemirror v-model="code"/>
+
           <button>submit</button>
       </form>
     </div>
-  </div>
-</template>
-
-<script>
+*/
 import getProblem from "@/composables/getProblem"
 import { ref } from '@vue/reactivity'
 import runProgram from '@/judge'
@@ -37,6 +39,7 @@ import { marked } from 'marked'
 import markedKatex from 'marked-katex-extension'
 import 'katex/dist/katex.css'
 import { computed } from "vue"
+
 
 
 export default {
@@ -71,29 +74,31 @@ export default {
 
 <style>
 
-.submit {
-  margin: 0 auto;
-  width: 70%;
-  display: flex;
+
+.cm-editor {
+  height: 100%;
 }
+.cm-scroller { overflow: auto; }
+
+.submit {
+  flex: 1;
+}
+
 
 .statement {
-  margin: 0 auto;
-  width: 70%;
+  background: lightgray;
+  flex: 1;
 }
 
-
-.form label {
-  font-size: 24px;
-  font-weight: "bold";
-}
-
-.form > * {
-  display: block;
+.statement--inner {
+  padding: 3em;
 }
 
 .problem_details {
     padding-top: 50px;
+    display: flex;
+    box-sizing: border-box;
+    height: 100vh;
 }
 
 
