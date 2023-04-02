@@ -1,8 +1,7 @@
-def a(n):
-   if n == 0:
-      return 0 
-   return n+a(n-1)
-
-x = int(input())
-print(a(x))
-print("even" if x%2==0 else "odd")
+n = int(input())
+out = 0
+for i in range(n+1):
+  out += i
+print(out)
+if not n%2:
+  print("even")
