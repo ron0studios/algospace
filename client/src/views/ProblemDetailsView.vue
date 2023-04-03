@@ -129,7 +129,7 @@ export default {
 
 <style>
 
-.statement--inner :after
+.statement--inner h1:after
 {
     content:' ';
     display:block;
@@ -138,7 +138,7 @@ export default {
 
 
 
-.statement--inner  {
+.statement--inner  pre{
   background: lightgray;
   padding: 0.5em;
   padding-left: 2em;
