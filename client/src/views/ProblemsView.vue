@@ -88,7 +88,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .count {
   color: white;
   padding: 0 50px;
@@ -125,11 +125,10 @@ export default {
 }
 
 .problems .card:hover {
-  background: rgb(219, 204, 255);
+  background: var(--highlight-dark);/*rgb(219, 204, 255);*/
 }
 
 .problems .card:hover .icon > img {
-  filter: invert(9%) sepia(13%) saturate(3783%) hue-rotate(230deg) brightness(91%) contrast(101%);
 }
 
 .problems .card:hover > p {
@@ -138,7 +137,8 @@ export default {
 
 .problems .card > p {
   font-size: 24px;
-  color: #fff;
+  font-weight: 700;
+  color: var(--background);
 }
 
 .problems .card > .icon {
@@ -151,8 +151,7 @@ export default {
 
 .icon > img {
   align-self: flex-end;
-  filter: invert(100%);
-  /*filter: invert(49%) sepia(9%) saturate(983%) hue-rotate(217deg) brightness(96%) contrast(84%);*/
+  filter: invert(9%) sepia(13%) saturate(3783%) hue-rotate(230deg) brightness(91%) contrast(101%);
 }
 
 
@@ -168,7 +167,7 @@ export default {
   cursor: pointer;
   width: calc(100% / 3 - 30px);
   aspect-ratio: 1 / 1;
-  background: #2e296b; 
+  background: var(--highlight);/*#2e296b; */
   margin: 15px;
   border-radius: 20px;
   display: flex;
@@ -182,7 +181,7 @@ export default {
   background-color: transparent;
   border: none;
   outline: none;
-  color: white;
+  color: color(--background);
   text-decoration: none;
 
   box-sizing: border-box;
@@ -192,14 +191,14 @@ export default {
     margin-right: 1em;
     padding: 5px 10px;
     cursor: pointer;
-    /*border: 2px solid rgb(219, 204, 255);*/
-    background: rgb(71, 13, 146); /*rgb(29, 16, 46);*/
+    background: var(--complement-light);/*rgb(71, 13, 146); rgb(29, 16, 46);*/
     border-radius: 10px;
     display: inline-block;
 }
 
 .searchicon {
   box-sizing: border-box;
+  color: var(--background);
 }
 
 .closeicon {
@@ -223,11 +222,6 @@ export default {
   margin: 10px auto;
   display: flex;
   align-items: center;
-  /*
-  background: rgb(29, 16, 46);
-  padding: 10px;
-  border-radius: 10px;
-  */
 }
 
 .line {
@@ -268,7 +262,7 @@ export default {
 
 .panel__problems--wrapper {
   overflow: scroll;
-  background: rgb(29, 16, 46); 
+  background: var(--background);/*rgb(29, 16, 46); */
   width: 100%;
   height: 100%;
 }
@@ -277,15 +271,18 @@ export default {
     margin-right: 1em;
     padding: 5px 10px;
     cursor: pointer;
-    /*border: 2px solid rgb(219, 204, 255);*/
-    background: rgb(71, 13, 146);
+    color: var(--background);
+    background: var(--complement-light);
     border-radius: 10px;
     display: inline-block;
 }
 
+.pill .tuneicon{
+  color: black;
+}
+
 .pill:hover {
-    color: rgb(29, 16, 46);
-    background: rgb(219, 204, 255);
+    background: var(--highlight);
     text-decoration: none;
 }
 .pill:hover .tuneicon{

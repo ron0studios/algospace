@@ -12,7 +12,6 @@
           <BoltIcon style="height: 30px;"/>
           submit
         </button>
-        <button>theme</button>
         <select required title="programming language" v-model="language">
           <option value="" selected disabled hidden>Choose language</option>
           <option value="cpp20">C++20</option>

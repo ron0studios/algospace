@@ -1,82 +1,39 @@
 
 <template>
- <div class = 'toggle-switch'>
-            <label>
-                <input type = 'checkbox'>
-                <span class = 'slider'></span>
-            </label>
-
-        </div> 
+<button class="toggle" @click="themeChange">
+    <MoonIcon class="icon" v-if="darkMode"/>
+    <SunIcon class="icon" v-else/>
+</button>
 </template>
 
 <script>
-// https://codepen.io/alvarotrigo/pen/zYPydpB
-export default {
+import { MoonIcon, SunIcon } from "@heroicons/vue/24/solid";
+import { ref } from 'vue';
 
+export default {
+    components: {
+        MoonIcon,
+        SunIcon
+    },
+    setup()
+    {
+        const darkMode = ref(true); 
+        const themeChange = () => {
+            darkMode.value = !darkMode.value;
+        }
+
+        return {themeChange, darkMode}
+    }
 }
 </script>
 
-<style>
-:root {
-  --light: #d8dbe0;
-  --dark: #28292c;
-  --link: rgb(27, 129, 112);
-  --link-hover: rgb(24, 94, 82);
+<style scoped>
+.hidden {
+    display: none;
 }
 
-.toggle-switch > * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+.toggle {
+    width: 50px;
 }
 
-.toggle-switch {
-  position: relative;
-  width: 100px;
-}
-
-.toggle-switch > label {
-  position: absolute;
-  width: 100%;
-  height: 50px;
-  background-color: var(--dark);
-  border-radius: 50px;
-  cursor: pointer;
-}
-
-.toggle-switch > label > input {
-  position: absolute;
-  display: none;
-}
-
-.toggle-switch > label > .slider {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 25px;
-  transition: 0.3s;
-}
-
-.toggle-switch > label > input:checked ~ .slider {
-  background-color: var(--light);
-}
-
-.toggle-switch > label > .slider::before {
-  content: "";
-  position: absolute;
-  top: 6.5px;
-  left: 8px;
-  width: 37.5px;
-  height: 37.5px;
-  border-radius: 50%;
-  box-shadow: inset 14px -2px 0px 0px var(--light);
-  background-color: var(--dark);
-  transition: 0.3s;
-}
-
-.toggle-switch > label > input:checked ~ .slider::before {
-  transform: translateX(47.5px);
-  background-color: var(--dark);
-  box-shadow: none;
-}
 </style>

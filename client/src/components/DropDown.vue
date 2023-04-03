@@ -57,7 +57,7 @@ export default {
 }
 
 .dropdown:hover {
-  background-color: #1e2933;
+  background-color: var(--primary-3);
   }
 
 .dropdown a {
@@ -72,7 +72,7 @@ export default {
   position:absolute;
 
 
-  background: blue;
+  background: var(--primary-4);
   border-radius: 7.5px;
   display: flex;
   flex-direction: column;
@@ -92,6 +92,6 @@ export default {
 }
 
 .dropdown__panel--link:hover {
-  background: black;
+  background: var(--primary-3);
 }
 </style>

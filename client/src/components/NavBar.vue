@@ -73,7 +73,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
-  background-color: rgb(57, 57, 87);
+  background-color: var(--primary-4); /*rgb(57, 57, 87);*/
   height: 50px;
 
 }
@@ -111,7 +111,7 @@ body {
 }
 
 .header__link:hover {
-  background-color: #1e2933;
+  background-color: var(--primary-3);
   }
 
 .header__link a {
@@ -119,7 +119,7 @@ body {
 }
 
 .bar {
-  border-left: 2px solid #5e7891;
+  border-left: 2px solid var(--primary-4);
   margin: auto 0;
   height: 50%;
 }
@@ -134,11 +134,11 @@ body {
   max-height: 35px;
   font-size: 17.5px;
   width: 300px;
-  background: #1e2933;
+  background: var(--primary-3);
   margin: auto 1em;
   padding: 7.5px;
   border-radius: 15px;
-  color: #88a
+  color: var(--primary-5);
   }
   .searchbar span {
     text-align: center;
