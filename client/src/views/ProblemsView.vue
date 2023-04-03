@@ -31,6 +31,11 @@
         <span class="material-symbols-outlined searchicon">search</span>
         <input class="search" type="text" placeholder="search...">
       </div>
+      <div class="pagineate">
+        <button class="page_left" @click="left">&lt;</button>
+        <span class="count" >{{page}}</span>
+        <button class="page_right" @click="right">></button>
+      </div>
       <div class="tags">
 
       </div>
@@ -51,11 +56,6 @@
       -->
     </div>
     <LoadingSpinner v-else/>
-    <div class="pagineate">
-      <button class="page_left" @click="left">&lt;</button>
-      <span class="count" >{{page}}</span>
-      <button class="page_right" @click="right">></button>
-    </div>
   </div>
 </div>
 </template>
@@ -66,6 +66,7 @@ import LoadingSpinner from "@/components/LoadingSpinner.vue"
 import { useProblemsStore } from "@/store"
 import { storeToRefs } from 'pinia'
 import { watch } from '@vue/runtime-core'
+
 
 export default {
   components: { ProblemCard, LoadingSpinner },
@@ -89,10 +90,6 @@ export default {
 </script>
 
 <style>
-.count {
-  color: white;
-  padding: 0 50px;
-}
 
 .material-symbols-outlined {
   font-variation-settings:
@@ -105,10 +102,23 @@ export default {
 
 <style scoped>
 
+.count {
+  margin: auto 20px;
+  color: white;
+  font-weight: bold;
+}
+.problems .page_left, .page_right {
+  border-style: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: var(--background);
+  background: var(--complement-light);
+  border-radius: 10px;
+  display: inline-block;
+  font-weight: 900;
+}
+
 .problems .pagineate {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
 }
 
 .problems .card .timer {
@@ -185,6 +195,7 @@ export default {
   text-decoration: none;
 
   box-sizing: border-box;
+  font-weight: 500;
 }
 
 .search--wrapper {
@@ -275,6 +286,7 @@ export default {
     background: var(--complement-light);
     border-radius: 10px;
     display: inline-block;
+    font-weight: 600;
 }
 
 .pill .tuneicon{
