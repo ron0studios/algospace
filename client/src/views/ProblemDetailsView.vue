@@ -18,7 +18,7 @@
           <option value="py3">Python 3</option>
           <option value="js">Javascript</option>
         </select>
-        <ToggleDarkLight />
+        <ToggleDarkLight @click="toggleTheme"/>
       </div>
       <codemirror class="editor" v-model="code" :extensions="extensions"/>
     </div>
@@ -74,6 +74,7 @@ export default {
 
     const extensions = ref([dracula, python()]);
 
+
     load().then(()=>{
       //problem.value.content.replaceAll("\\n","\n")
     })
@@ -111,8 +112,17 @@ export default {
 
     }
 
+    const toggleTheme = () => {
+      if(extensions.value.length == 2) {
+        extensions.value = [extensions.value[1]]
+      }
+      else{
+        extensions.value = [dracula, extensions.value[0]]
+      }
+    }
 
-    return {problem, error, submitForm, language, code, markdown, extensions, updateLanguage}
+
+    return {problem, error, submitForm, language, code, markdown, extensions, updateLanguage, toggleTheme}
   }
 }
 </script>
