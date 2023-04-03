@@ -3,8 +3,6 @@ import App from './App.vue'
 import router from './router'
 import { basicSetup } from 'codemirror'
 import VueCodemirror from 'vue-codemirror'
-import { dracula } from '@uiw/codemirror-theme-dracula'
-import { python } from '@codemirror/lang-python'
 
 
 import { createPinia } from 'pinia' 
@@ -18,6 +16,6 @@ createApp(App).use(createPinia()).use(router).use(VueCodemirror, {
     indentWithTab: true,
     tabSize: 2,
     placeholder: 'Code goes here...',
-    extensions: [basicSetup, dracula, python()]
+    extensions: [basicSetup]
     // ...
   }).mount('#app')

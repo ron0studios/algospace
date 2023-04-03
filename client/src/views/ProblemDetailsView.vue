@@ -12,16 +12,15 @@
           <BoltIcon style="height: 30px;"/>
           submit
         </button>
-        <select required title="programming language" v-model="language">
+        <select required title="programming language" v-model="language" @change="updateLanguage">
           <option value="" selected disabled hidden>Choose language</option>
           <option value="cpp20">C++20</option>
           <option value="py3">Python 3</option>
           <option value="js">Javascript</option>
-          <option value="c">C11</option>
         </select>
         <ToggleDarkLight />
       </div>
-      <codemirror class="editor" v-model="code" />
+      <codemirror class="editor" v-model="code" :extensions="extensions"/>
     </div>
   </div>
 </template>
@@ -57,6 +56,11 @@ import { BoltIcon } from "@heroicons/vue/24/solid";
 import ToggleDarkLight from '../components/ToggleDarkLight.vue'
 
 
+import { dracula } from '@uiw/codemirror-theme-dracula'
+import { python } from '@codemirror/lang-python'
+import { cpp } from '@codemirror/lang-cpp'
+import { javascript } from '@codemirror/lang-javascript'
+
 
 export default {
   props: ['id'],
@@ -67,6 +71,8 @@ export default {
   setup(props)
   {
     const {problem, load, error} = getProblem(props.id)
+
+    const extensions = ref([dracula, python()]);
 
     load().then(()=>{
       //problem.value.content.replaceAll("\\n","\n")
@@ -82,13 +88,31 @@ export default {
     const language = ref("py3");
     const code = ref("");
 
+    const updateLanguage = (event) => {
+      switch(event.target.value){
+        case "py3":
+          extensions.value = [dracula, python()]
+          break;
+        case "cpp20":
+          extensions.value = [dracula, cpp()]
+          break;
+        case "js":
+          extensions.value = [dracula, javascript()]
+          break;
+        default:
+          console.log("unsupported language")
+          break;
+      }
+    }
+
     const submitForm = async () => {
       console.log(code.value)
       runProgram(code.value, language.value, [...problem.value.testcases], [...problem.value.answers])
+
     }
 
 
-    return {problem, error, submitForm, language, code, markdown}
+    return {problem, error, submitForm, language, code, markdown, extensions, updateLanguage}
   }
 }
 </script>
