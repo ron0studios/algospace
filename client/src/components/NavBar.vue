@@ -119,7 +119,7 @@ body {
 }
 
 .bar {
-  border-left: 2px solid var(--primary-4);
+  border-left: 2px solid var(--primary-5);
   margin: auto 0;
   height: 50%;
 }

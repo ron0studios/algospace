@@ -12,12 +12,6 @@
         </div>
         <div class="tags">
             <router-link class="pill" :to="{name: 'home'}" v-for="tag in data.tags" :key="tag">{{tag}}</router-link>
-            <!--
-            <router-link class="pill" :to="{name: 'home'}">dp</router-link>
-            <router-link class="pill" :to="{name: 'home'}">bfs</router-link>
-            <router-link class="pill" :to="{name: 'home'}">trees</router-link>
-            <router-link class="pill" :to="{name: 'home'}">graphs</router-link>
-            -->
         </div>
     </div>
   </router-link>
@@ -56,7 +50,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .details {
     display: flex;
     justify-content: space-between;
@@ -66,7 +60,7 @@ export default {
     text-decoration: none;
     font-weight: bold;
     letter-spacing: .1em;
-    color: gray;
+    color: var(--highlight);
     font-size: 16px;
     margin-top: 10px;
 }
@@ -81,7 +75,7 @@ export default {
 .pill {
     margin: 5px 10px;
     padding: 3px 5px;
-    background: rgb(29, 16, 46);
+    background: var(--background);
     color: rgb(219, 204, 255);
     border-radius: 10px;
     text-decoration: none;
@@ -105,7 +99,7 @@ h1.title {
 
 
 .problem-card {
-  background: #2e296b;
+  background: var(--primary-3);
   border-radius: 10px;
   border-left: 10px solid gray;
   text-decoration: none;

@@ -84,7 +84,7 @@ export default {
 
     const submitForm = async () => {
       console.log(code.value)
-      runProgram(code.value, language.value)
+      runProgram(code.value, language.value, [...problem.value.testcases], [...problem.value.answers])
     }
 
 

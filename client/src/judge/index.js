@@ -1,7 +1,5 @@
 
-const runProgram = async (code, language) => {
-    console.log(code)
-    console.log(language)
+const runProgram = async (code, language, testcases, answers) => {
 
     const res = await fetch('http://localhost:5000/submit', {
         method: 'POST',
@@ -9,7 +7,7 @@ const runProgram = async (code, language) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({code:code,language:language})
+        body: JSON.stringify({code:code,language:language, testcases:testcases, answers:answers})
     })
     .then(response => response.json())
     .then(response => console.log(JSON.stringify(response)))
