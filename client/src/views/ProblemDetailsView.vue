@@ -129,6 +129,21 @@ export default {
 
 <style>
 
+h1:after
+{
+    content:' ';
+    display:block;
+    border:2px solid lightgray;
+}
+
+
+
+pre {
+  background: lightgray;
+  padding: 0.5em;
+  padding-left: 2em;
+  border-radius: 10px;
+}
 
 .buttons > button {
   border: none;
@@ -150,7 +165,9 @@ export default {
   height: 100%;
   font-size: 14px;
 }
-.cm-scroller { overflow: auto; }
+.cm-scroller { overflow: auto;
+ }
+
 
 .submit {
   flex: 1;
@@ -160,12 +177,15 @@ export default {
 
 
 .statement {
-  background: lightgray;
+  background: white;
   flex: 1;
+  overflow: auto;
 }
 
 .statement--inner {
   padding: 3em;
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .problem_details {
