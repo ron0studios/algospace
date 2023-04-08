@@ -1,4 +1,10 @@
-# algospace_
+# algospace
+---
+This website aims to provide an online judge for coding problems from the BIO and other related contests. It is currently in active development
+
+
+# INSTALL
+---
 
 This template should help get you started developing with Vue 3 in Vite.
 
