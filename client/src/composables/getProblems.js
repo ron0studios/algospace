@@ -1,15 +1,15 @@
-import {ref } from 'vue'
-import { projectFirestore } from '@/firebase/config';
-import { collection, getDocs, query, limit, startAfter, orderBy, getDoc, doc, endBefore, limitToLast, getCountFromServer} from 'firebase/firestore'
+import PocketBase from 'pocketbase'
+import { ref } from 'vue'
+
+const pb = new PocketBase('http://127.0.0.1:8090')
 
 const getProblems = () => {
     const problems = ref([])
-    const error = ref(null);
-    const pagecount = 10;
-    const page = ref(1);
-    const tot_problems = ref(0)
-    
-    let loading = false;
+    const error = ref(null)
+    const pagecount = ref(10)
+    const page = ref(1)
+    const tot_pages = ref(0)
+    let loading = false
 
     const load = async () => {
       if(loading) return;
@@ -17,87 +17,86 @@ const getProblems = () => {
 
       console.log("running load...")
       try {
-        const res = await getDocs(query(collection(projectFirestore, 'problems'), orderBy("title"), limit(pagecount)))
-        problems.value = res.docs.map(doc => {
-          return {...doc.data(), id: doc.id}
+        const res = await pb.collection('problem').getList(1,pagecount.value, {expand:'tag'})
+        tot_pages.value = res.totalPages
+        problems.value = res.items.map(x=> {
+          x.tag = x.expand.tag.map(y=>y.title)
+          return x
         })
-        const res2 = await getCountFromServer(collection(projectFirestore, 'problems'))
-        tot_problems.value = res2.data().count
-        //console.log(res2.data().count)
       }
       catch (err){
         error.value = err.message
         console.log(err.message)
       }
+
+      console.log(problems.value[0])
 
       loading = false;
     }
 
     const left = async () => {
-      if(loading){
-        console.log("blocked")
-        return;
-      } 
-      loading = true;
+        if(loading)
+        {
+            console.log("blocked")
+            return;
+        }
+        loading = true;
 
-      console.log("running switch...")
-      if(page.value == 1){
-        loading = false;
-        return;
-      }
-
-      try {
-        //console.log(pagecount)
-        const res = await getDocs(query(collection(projectFirestore, 'problems'), orderBy("title"), endBefore(await getDoc(doc(projectFirestore,"problems",problems.value.at(0).id))) , limitToLast(pagecount)))
-        //console.log(res.docs[0].data())
-        problems.value = res.docs.map(doc => {
-          return {...doc.data(), id: doc.id}
-        })
-      }
-      catch (err){
-        error.value = err.message
-        console.log(err.message)
-      }
-
-      if(!error.value) {
-        page.value -= 1
-      }
-
-      loading = false;
-    }
-    const right = async () => {
-      if(loading) {
-        console.log("blocked")
-        return;
-      }
-      loading = true;
-
-      console.log("running switch...")
-      try {
-        //console.log(pagecount)
-        const res = await getDocs(query(collection(projectFirestore, 'problems'), orderBy("title"), startAfter(await getDoc(doc(projectFirestore,"problems",problems.value.at(-1).id))) , limit(pagecount)))
-        //console.log(res.docs[0].data())
-        if(res.docs.length <= 0){ 
-          loading = false;
-          return;
+        if(page.value == 1)
+        {
+            loading = false;
+            return;
         }
 
-        problems.value = res.docs.map(doc => {
-          return {...doc.data(), id: doc.id}
-        })
-      }
-      catch (err){
-        error.value = err.message
-        console.log(err.message)
-      }
+        try {
+            const res = (await pb.collection('problem').getList(page.value-1, pagecount.value, {expand:'tag'}))
+            problems.value = res.items.map(x=> {
+              x.tag = x.expand.tag.map(y=>y.title)
+              return x
+            })
+        } catch (err) {
+            error.value = err.message
+            console.log(err.message)
+        }
 
-      if(!error.value) {
-        page.value += 1
-      }
+        if(!error.value) {
+            page.value -= 1
+        }
 
-      loading = false;
+        loading = false
     }
 
+    const right = async () => {
+        if(loading)
+        {
+            console.log("blocked")
+            return;
+        }
+        loading = true;
+
+        if(page.value == tot_pages.value)
+        {
+            loading = false;
+            return;
+        }
+
+        try {
+            const res = (await pb.collection('problem').getList(page.value+1, pagecount.value, {expand: 'tag'}))
+            problems.value = res.items.map(x=> {
+              x.tag = x.expand.tag.map(y=>y.title)
+              return x
+            })
+        } catch (err) {
+            error.value = err.message
+            console.log(err.message)
+        }
+
+        if(!error.value) {
+            page.value += 1
+        }
+
+        loading = false
+    }
 
 
     return {problems, error, load, left, right, page}

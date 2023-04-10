@@ -1,3 +1,32 @@
+import PocketBase from 'pocketbase'
+import { ref } from 'vue'
+
+
+const pb = new PocketBase('http://127.0.0.1:8090')
+
+const getProblem = (id) => {
+    const problem = ref(null)
+    const error = ref(null);
+
+    const load = async () => {
+      try {
+        let res = await pb.collection('problem').getOne(id)
+        problem.value = res
+      }
+      catch (err){
+        error.value = err.message
+        console.log(err.value)
+      }
+
+    }
+
+
+    return {problem, error, load}
+}
+
+export default getProblem
+
+/*
 import { projectFirestore } from '@/firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 import {ref } from 'vue'
@@ -5,7 +34,7 @@ import {ref } from 'vue'
 const getProblem = (id)=>{
     const problem = ref(null)
     const error = ref(null);
-    
+
     const load = async () => {
       try {
         //let res = await projectFirestore.collection('problems').doc(id).get()
@@ -25,3 +54,4 @@ const getProblem = (id)=>{
 }
 
 export default getProblem
+*/

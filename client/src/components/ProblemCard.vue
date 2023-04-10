@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="tags">
-            <router-link class="pill" :to="{name: 'home'}" v-for="tag in data.tags" :key="tag">{{tag}}</router-link>
+            <router-link class="pill" :to="{name: 'home'}" v-for="tag in data.tag" :key="tag">{{tag}}</router-link>
         </div>
     </div>
   </router-link>

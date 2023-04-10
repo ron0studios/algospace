@@ -83,7 +83,7 @@ export default {
 
     marked.use(markedKatex({}))
 
-    const markdown = computed(()=>{return marked(problem.value.content.replaceAll('\\n','\n'), {})})
+    const markdown = computed(()=>{return marked(problem.value.statement.replaceAll('\\n','\n'), {})})
 
 
     const language = ref("py3");
