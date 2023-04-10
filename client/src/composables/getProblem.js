@@ -1,30 +1,26 @@
-import PocketBase from 'pocketbase'
-import { ref } from 'vue'
+import PocketBase from "pocketbase";
+import { ref } from "vue";
 
-
-const pb = new PocketBase('http://127.0.0.1:8090')
+const pb = new PocketBase("http://127.0.0.1:8090");
 
 const getProblem = (id) => {
-    const problem = ref(null)
-    const error = ref(null);
+  const problem = ref(null);
+  const error = ref(null);
 
-    const load = async () => {
-      try {
-        let res = await pb.collection('problem').getOne(id)
-        problem.value = res
-      }
-      catch (err){
-        error.value = err.message
-        console.log(err.value)
-      }
-
+  const load = async () => {
+    try {
+      let res = await pb.collection("problem").getOne(id);
+      problem.value = res;
+    } catch (err) {
+      error.value = err.message;
+      console.log(err.value);
     }
+  };
 
+  return { problem, error, load };
+};
 
-    return {problem, error, load}
-}
-
-export default getProblem
+export default getProblem;
 
 /*
 import { projectFirestore } from '@/firebase/config';

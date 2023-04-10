@@ -1,9 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { addDoc, collection, getFirestore } from "firebase/firestore"
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -12,19 +11,17 @@ const firebaseConfig = {
   projectId: "algospace-ron0",
   storageBucket: "algospace-ron0.appspot.com",
   messagingSenderId: "365047884037",
-  appId: "1:365047884037:web:6fbf793e5dde5b11076f6c"
+  appId: "1:365047884037:web:6fbf793e5dde5b11076f6c",
 };
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
-const projectFirestore = getFirestore()
+const projectFirestore = getFirestore();
 
-
-
-const choice = inp => {
-  return inp[Math.round(Math.random()*(inp.length-1))]
-}
 /*
+const choice = (inp) => {
+  return inp[Math.round(Math.random() * (inp.length - 1))];
+};
 for(let i = 0; i < 20; i++)
 {
   let out = "ZZFillerProblem"
@@ -53,4 +50,4 @@ for(let i = 0; i < 20; i++)
 }
 */
 
-export { projectFirestore }
+export { projectFirestore };

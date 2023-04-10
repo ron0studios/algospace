@@ -2,18 +2,22 @@
   <div class="header">
     <div class="header__content">
       <div class="header--left">
-        <router-link class="header__logo" :to="{name:'home'}">
-          <img class="header__logo--image" :src="algospace_white">
+        <router-link class="header__logo" :to="{ name: 'home' }">
+          <img class="header__logo--image" :src="algospace_white" />
         </router-link>
         <div class="bar"></div>
         <DropDown />
-        <router-link class="header__link" :to="{name:'problems'}"><a>Problems</a></router-link>
+        <router-link class="header__link" :to="{ name: 'problems' }"
+          ><a>Problems</a></router-link
+        >
       </div>
       <div class="header--right">
-        <div class="searchbar"> <span class="material-symbols-outlined">search</span>search here... </div>
+        <div class="searchbar">
+          <span class="material-symbols-outlined">search</span>search here...
+        </div>
         <div class="bar"></div>
-        <router-link class="header__logo" :to="{name: 'home'}">
-          <img class="header__logo--image userlogo" :src="testuserlogo">
+        <router-link class="header__logo" :to="{ name: 'home' }">
+          <img class="header__logo--image userlogo" :src="testuserlogo" />
         </router-link>
       </div>
       <!-- <router-link class="header__search" :to="{name:'home'}">Search</router-link> -->
@@ -22,20 +26,18 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
-import DropDown from '@/components/DropDown.vue'
+import { ref } from "vue";
+import DropDown from "@/components/DropDown.vue";
 
 export default {
-  components: {DropDown},
-  setup()
-  {
-    const algospace_white = ref('/src/assets/algospace_white.png')
-    const testuserlogo = ref('/src/assets/testuserlogo.png')
-    return {algospace_white, testuserlogo}
-  }
-}
+  components: { DropDown },
+  setup() {
+    const algospace_white = ref("/src/assets/algospace_white.png");
+    const testuserlogo = ref("/src/assets/testuserlogo.png");
+    return { algospace_white, testuserlogo };
+  },
+};
 </script>
-
 
 <style>
 body {
@@ -75,7 +77,6 @@ body {
   align-items: stretch;
   background-color: var(--primary-4); /*rgb(57, 57, 87);*/
   height: 50px;
-
 }
 
 .header--left {
@@ -112,7 +113,7 @@ body {
 
 .header__link:hover {
   background-color: var(--primary-3);
-  }
+}
 
 .header__link a {
   font-size: 20px;
@@ -139,11 +140,10 @@ body {
   padding: 7.5px;
   border-radius: 15px;
   color: var(--primary-5);
-  }
-  .searchbar span {
-    text-align: center;
-  }
-
+}
+.searchbar span {
+  text-align: center;
+}
 </style>
 
 <style>
@@ -152,10 +152,6 @@ body {
   font-size: 21px;
   margin-right: 0.5em;
   vertical-align: middle;
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
 </style>

@@ -2,31 +2,35 @@
   <div class="problem_details">
     <div class="statement" v-if="problem">
       <div class="statement--inner">
-        <h1>{{problem.title}}</h1>
+        <h1>{{ problem.title }}</h1>
         <div v-html="markdown"></div>
       </div>
     </div>
     <div class="submit">
       <div class="buttons">
         <button @click="submitForm">
-          <BoltIcon style="height: 30px;"/>
+          <BoltIcon style="height: 30px" />
           submit
         </button>
-        <select required title="programming language" v-model="language" @change="updateLanguage">
+        <select
+          required
+          title="programming language"
+          v-model="language"
+          @change="updateLanguage"
+        >
           <option value="" selected disabled hidden>Choose language</option>
           <option value="cpp20">C++20</option>
           <option value="py3">Python 3</option>
           <option value="js">Javascript</option>
         </select>
-        <ToggleDarkLight @click="toggleTheme"/>
+        <ToggleDarkLight @click="toggleTheme" />
       </div>
-      <codemirror class="editor" v-model="code" :extensions="extensions"/>
+      <codemirror class="editor" v-model="code" :extensions="extensions" />
     </div>
   </div>
 </template>
 
 <script>
-
 /*
     <div class="submit">
       <form @submit.prevent="submitForm" class="form">
@@ -45,100 +49,103 @@
       </form>
     </div>
 */
-import getProblem from "@/composables/getProblem"
-import { ref } from '@vue/reactivity'
-import runProgram from '@/judge'
-import { marked } from 'marked'
-import markedKatex from 'marked-katex-extension'
-import 'katex/dist/katex.css'
-import { computed } from "vue"
+import getProblem from "@/composables/getProblem";
+import { ref } from "vue";
+import runProgram from "@/judge";
+import { marked } from "marked";
+import markedKatex from "marked-katex-extension";
+import "katex/dist/katex.css";
+import { computed } from "vue";
 import { BoltIcon } from "@heroicons/vue/24/solid";
-import ToggleDarkLight from '../components/ToggleDarkLight.vue'
+import ToggleDarkLight from "../components/ToggleDarkLight.vue";
 
-
-import { dracula } from '@uiw/codemirror-theme-dracula'
-import { python } from '@codemirror/lang-python'
-import { cpp } from '@codemirror/lang-cpp'
-import { javascript } from '@codemirror/lang-javascript'
-
+import { dracula } from "@uiw/codemirror-theme-dracula";
+import { python } from "@codemirror/lang-python";
+import { cpp } from "@codemirror/lang-cpp";
+import { javascript } from "@codemirror/lang-javascript";
 
 export default {
-  props: ['id'],
+  props: ["id"],
   components: {
     BoltIcon,
-    ToggleDarkLight
+    ToggleDarkLight,
   },
-  setup(props)
-  {
-    const {problem, load, error} = getProblem(props.id)
+  setup(props) {
+    const { problem, load, error } = getProblem(props.id);
 
     const extensions = ref([dracula, python()]);
 
-
-    load().then(()=>{
+    load().then(() => {
       //problem.value.content.replaceAll("\\n","\n")
-    })
+    });
 
+    marked.use(markedKatex({}));
 
-
-    marked.use(markedKatex({}))
-
-    const markdown = computed(()=>{return marked(problem.value.statement.replaceAll('\\n','\n'), {})})
-
+    const markdown = computed(() => {
+      return marked(problem.value.statement.replaceAll("\\n", "\n"), {});
+    });
 
     const language = ref("py3");
     const code = ref("");
 
     const updateLanguage = (event) => {
-      switch(event.target.value){
+      switch (event.target.value) {
         case "py3":
-          extensions.value = [dracula, python()]
+          extensions.value = [dracula, python()];
           break;
         case "cpp20":
-          extensions.value = [dracula, cpp()]
+          extensions.value = [dracula, cpp()];
           break;
         case "js":
-          extensions.value = [dracula, javascript()]
+          extensions.value = [dracula, javascript()];
           break;
         default:
-          console.log("unsupported language")
+          console.log("unsupported language");
           break;
       }
-    }
+    };
 
     const submitForm = async () => {
-      console.log(code.value)
-      runProgram(code.value, language.value, [...problem.value.testcases], [...problem.value.answers])
-
-    }
+      console.log(code.value);
+      runProgram(
+        code.value,
+        language.value,
+        [...problem.value.testcases],
+        [...problem.value.answers]
+      );
+    };
 
     const toggleTheme = () => {
-      if(extensions.value.length == 2) {
-        extensions.value = [extensions.value[1]]
+      if (extensions.value.length == 2) {
+        extensions.value = [extensions.value[1]];
+      } else {
+        extensions.value = [dracula, extensions.value[0]];
       }
-      else{
-        extensions.value = [dracula, extensions.value[0]]
-      }
-    }
+    };
 
-
-    return {problem, error, submitForm, language, code, markdown, extensions, updateLanguage, toggleTheme}
-  }
-}
+    return {
+      problem,
+      error,
+      submitForm,
+      language,
+      code,
+      markdown,
+      extensions,
+      updateLanguage,
+      toggleTheme,
+    };
+  },
+};
 </script>
 
 <style>
-
-.statement--inner h1:after
-{
-    content:' ';
-    display:block;
-    border:2px solid lightgray;
+.statement--inner h1:after {
+  content: " ";
+  display: block;
+  border: 2px solid lightgray;
 }
 
-
-
-.statement--inner  pre{
+.statement--inner pre {
   background: lightgray;
   padding: 0.5em;
   padding-left: 2em;
@@ -147,7 +154,7 @@ export default {
 
 .buttons > button {
   border: none;
-  display:flex;
+  display: flex;
   align-items: center;
 }
 
@@ -165,16 +172,15 @@ export default {
   height: 100%;
   font-size: 14px;
 }
-.cm-scroller { overflow: auto;
- }
-
+.cm-scroller {
+  overflow: auto;
+}
 
 .submit {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-
 
 .statement {
   background: white;
@@ -189,11 +195,9 @@ export default {
 }
 
 .problem_details {
-    padding-top: 50px;
-    display: flex;
-    box-sizing: border-box;
-    height: 100vh;
+  padding-top: 50px;
+  display: flex;
+  box-sizing: border-box;
+  height: 100vh;
 }
-
-
 </style>
