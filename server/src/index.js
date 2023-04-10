@@ -1,8 +1,18 @@
-const express = require('express')
-const bp = require('body-parser')
-const cors = require('cors')
-const {exec, spawn} = require('child_process');
-const fs = require('fs');
+//const express = require('express')
+import express from 'express'
+//const bp = require('body-parser')
+import bp from 'body-parser'
+//const cors = require('cors')
+import cors from 'cors'
+//const {exec, spawn} = require('child_process');
+import {exec, spawn} from 'child_process'
+
+//const fs = require('fs');
+import fs from 'fs'
+
+//const db = require('./database')
+import db from './database/index.js'
+
 
 const app = express()
 

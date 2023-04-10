@@ -42,6 +42,7 @@ const getProblems = () => {
         }
         loading = true;
 
+
         if(page.value == 1)
         {
             loading = false;
@@ -73,6 +74,7 @@ const getProblems = () => {
             return;
         }
         loading = true;
+
 
         if(page.value == tot_pages.value)
         {
