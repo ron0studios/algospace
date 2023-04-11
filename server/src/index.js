@@ -66,7 +66,7 @@ const runPythonTests = async (testcases, answers) => {
       results.push(result)
       if(result != "AC")
       {
-        break;
+        //break;
       }
     }
 
@@ -139,7 +139,7 @@ const runCpp20Tests = async (testcases, answers) => {
       results.push(result);
       if(result != "AC")
       {
-        break;
+        //break;
       }
 
       

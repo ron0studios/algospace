@@ -5,6 +5,14 @@
         <h1>{{ problem.title }}</h1>
         <div v-html="markdown"></div>
       </div>
+      <div class="results">
+        <h1>
+          results:
+        </h1>
+        <div class="results__table">
+          <div v-for="index in problem.testcase.input.length" :key="index" class="testcase" :class="submission[index-1]">{{(submission[index-1]) ? submission[index-1] : index}}</div>
+        </div>
+      </div>
     </div>
     <div class="submit">
       <div class="buttons">
@@ -72,6 +80,7 @@ export default {
   },
   setup(props) {
     const { problem, load, error } = getProblem(props.id);
+    const submission = ref([])
 
     const extensions = ref([dracula, python()]);
 
@@ -107,12 +116,17 @@ export default {
 
     const submitForm = async () => {
       console.log(code.value);
-      runProgram(
+      const out = await runProgram(
         code.value,
         language.value,
-        [...problem.value.testcases],
-        [...problem.value.answers]
-      );
+        [...problem.value.testcase.input],
+        [...problem.value.testcase.output]
+      )
+
+      for(const x of out.output){
+        submission.value.push(x)
+      }
+
     };
 
     const toggleTheme = () => {
@@ -133,6 +147,7 @@ export default {
       extensions,
       updateLanguage,
       toggleTheme,
+      submission,
     };
   },
 };
@@ -182,16 +197,77 @@ export default {
   flex-direction: column;
 }
 
+.results {
+  margin: 2em;
+  padding: 1em;
+  border-radius: 0.5em;
+  background: whitesmoke;
+}
+
+.results__table {
+  margin: 0.5em;
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+}
+
+.testcase {
+  background-color: lightgray;
+  width: 50px;
+  height: 70px;
+  border-radius: 10px;
+  text-align: center;
+  border-top: solid 10px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  font-weight: 800;
+  font-size: 24px;
+  color: darkgray;
+}
+
+.testcase.AC {
+  background: limegreen;
+  color: white;
+}
+
+.testcase.CE {
+  background: orange;
+  color: white;
+}
+
+.testcase.RE {
+  background: orange;
+  color: white;
+}
+
+.testcase.TLE {
+  background: orange;
+  color: white;
+}
+
+.testcase.WA {
+  background: orangered;
+  color: white;
+}
+
+
 .statement {
   background: white;
   flex: 1;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .statement--inner {
-  padding: 3em;
+  margin: 2em;
+  padding: 1em;
+  border-radius: 0.5em;
   font-weight: 500;
   font-size: 18px;
+  background: whitesmoke;
 }
 
 .problem_details {

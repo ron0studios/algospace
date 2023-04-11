@@ -3,7 +3,7 @@
     <div class="header__content">
       <div class="header--left">
         <router-link class="header__logo" :to="{ name: 'home' }">
-          <img class="header__logo--image" :src="algospace_white" />
+          <img class="header__logo--image" src="../assets/algospace_white.png" />
         </router-link>
         <div class="bar"></div>
         <DropDown />
@@ -17,7 +17,7 @@
         </div>
         <div class="bar"></div>
         <router-link class="header__logo" :to="{ name: 'home' }">
-          <img class="header__logo--image userlogo" :src="testuserlogo" />
+          <img class="header__logo--image userlogo" src="../assets/testuserlogo.png" />
         </router-link>
       </div>
       <!-- <router-link class="header__search" :to="{name:'home'}">Search</router-link> -->

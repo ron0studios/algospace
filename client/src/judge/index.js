@@ -1,4 +1,5 @@
 const runProgram = async (code, language, testcases, answers) => {
+  let ret = ""
   const res = await fetch("http://localhost:5000/submit", {
     method: "POST",
     headers: {
@@ -13,7 +14,10 @@ const runProgram = async (code, language, testcases, answers) => {
     }),
   })
     .then((response) => response.json())
-    .then((response) => console.log(JSON.stringify(response)));
+    .then((response) => {
+      ret = response
+      console.log(JSON.stringify(response))
+    });
 
   switch (language) {
     case "py3":
@@ -27,7 +31,7 @@ const runProgram = async (code, language, testcases, answers) => {
       break;
   }
 
-  return "YES";
+  return ret;
 };
 
 export default runProgram;

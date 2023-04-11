@@ -15,7 +15,7 @@ console.log(tags)
 const choice = inp => {
   return inp[Math.round(Math.random()*(inp.length-1))]
 }
-for(let i = 0; i < 200; i++)
+for(let i = 0; i < 1; i++)
 {
   let out = "ZZFillerProblem"
   let tag = []
@@ -35,6 +35,10 @@ for(let i = 0; i < 200; i++)
     tag: tag,
     creator: 'wwh55szwbkw1ed3',
     title: out,
+    testcase: {
+      input: [1,2,3,4,5],
+      output: [1,2,3,4,5]
+    }
   }
   console.log(obj)
 
@@ -42,5 +46,4 @@ for(let i = 0; i < 200; i++)
   await pb.collection('problem').create(obj)
 }
 */
-
 export default pb;
