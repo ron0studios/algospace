@@ -9,6 +9,7 @@
         <h1>
           results:
         </h1>
+        <p v-if="loading">loading...</p>
         <div class="results__table">
           <div v-for="index in problem.testcase.input.length" :key="index" class="testcase" :class="submission[index-1]">{{(submission[index-1]) ? submission[index-1] : index}}</div>
         </div>
@@ -81,6 +82,7 @@ export default {
   setup(props) {
     const { problem, load, error } = getProblem(props.id);
     const submission = ref([])
+    const loading = ref(false)
 
     const extensions = ref([dracula, python()]);
 
@@ -116,6 +118,7 @@ export default {
 
     const submitForm = async () => {
       console.log(code.value);
+      loading.value = true
       const out = await runProgram(
         code.value,
         language.value,
@@ -123,9 +126,9 @@ export default {
         [...problem.value.testcase.output]
       )
 
-      for(const x of out.output){
-        submission.value.push(x)
-      }
+      submission.value = out.output
+
+      loading.value=false;
 
     };
 
@@ -148,6 +151,7 @@ export default {
       updateLanguage,
       toggleTheme,
       submission,
+      loading
     };
   },
 };
