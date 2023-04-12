@@ -1,7 +1,8 @@
 import PocketBase from "pocketbase";
 import { ref } from "vue";
 
-const pb = new PocketBase("http://140.238.71.54");
+const pb = new PocketBase((import.meta.env.PROD) ? import.meta.env.VITE_WEB_URL : import.meta.env.VITE_PB_LOCAL);
+
 
 const getProblem = (id) => {
   const problem = ref(null);

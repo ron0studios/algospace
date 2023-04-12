@@ -1,6 +1,6 @@
 const runProgram = async (code, language, testcases, answers) => {
   let ret = ""
-  const res = await fetch("http://140.238.71.54:80/submit", {
+  const res = await fetch( (import.meta.env.PROD) ? impoert.meta.env.VITE_WEB_URL+"/submit" : import.meta.env.VITE_EX_LOCAL+"/submit", {
     method: "POST",
     headers: {
       Accept: "application/json",
