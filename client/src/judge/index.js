@@ -1,6 +1,6 @@
 const runProgram = async (code, language, testcases, answers) => {
   let ret = ""
-  const res = await fetch("http://localhost:5000/submit", {
+  const res = await fetch("http://140.238.71.54:80/submit", {
     method: "POST",
     headers: {
       Accept: "application/json",

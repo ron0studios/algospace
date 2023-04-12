@@ -1,10 +1,9 @@
 import PocketBase from 'pocketbase';
 
-const pb = new PocketBase('http://127.0.0.1:8090');
+const pb = new PocketBase('http://140.238.71.54');
 
-
-const test = await pb.collection('problem').getList(1,1, {expand: 'tag'})
-console.log(test.items.map(x=>x.expand.tag.map(y=>y.title)))
+//const test = await pb.collection('problem').getList(1,1, {expand: 'tag'})
+//console.log(test.items.map(x=>x.expand.tag.map(y=>y.title)))
 
 //SELECT tag.title FROM problem INNER JOIN problem_tag ON problem_tag.problem_id=problem.id INNER JOIN tag ON tag.id = problem_tag.tag_id WHERE problem.title = "Sum to N";
 

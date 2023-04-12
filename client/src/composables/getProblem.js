@@ -1,7 +1,7 @@
 import PocketBase from "pocketbase";
 import { ref } from "vue";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("http://140.238.71.54");
 
 const getProblem = (id) => {
   const problem = ref(null);
