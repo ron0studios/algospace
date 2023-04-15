@@ -10,17 +10,23 @@ const getProblems = () => {
   const pagecount = ref(10);
   const page = ref(1);
   const tot_pages = ref(0);
+  const sortParams = ref("");
+  const filterParams = ref("");
   let loading = false;
 
-  const load = async () => {
+  const load = async (sort="", filter="") => {
     if (loading) return;
     loading = true;
+
+    sortParams.value = sort
+    filterParams.value = filter
+    page.value = 1
 
     console.log("running load...");
     try {
       const res = await pb
         .collection("problem")
-        .getList(1, pagecount.value, { expand: "tag" });
+        .getList(1, pagecount.value, { expand: "tag", sort: sortParams.value, filter: filterParams.value });
       tot_pages.value = res.totalPages;
       problems.value = res.items.map((x) => {
         x.tag = x.expand.tag.map((y) => y.title);
@@ -31,7 +37,6 @@ const getProblems = () => {
       console.log(err.message);
     }
 
-    console.log(problems.value[0]);
 
     loading = false;
   };
@@ -51,7 +56,7 @@ const getProblems = () => {
     try {
       const res = await pb
         .collection("problem")
-        .getList(page.value - 1, pagecount.value, { expand: "tag" });
+        .getList(page.value - 1, pagecount.value, { expand: "tag", sort: sortParams.value, filter: filterParams.value });
       problems.value = res.items.map((x) => {
         x.tag = x.expand.tag.map((y) => y.title);
         return x;
@@ -83,7 +88,7 @@ const getProblems = () => {
     try {
       const res = await pb
         .collection("problem")
-        .getList(page.value + 1, pagecount.value, { expand: "tag" });
+        .getList(page.value + 1, pagecount.value, { expand: "tag", sort: sortParams.value, filter: filterParams.value});
       problems.value = res.items.map((x) => {
         x.tag = x.expand.tag.map((y) => y.title);
         return x;
@@ -100,7 +105,7 @@ const getProblems = () => {
     loading = false;
   };
 
-  return { problems, error, load, left, right, page };
+  return { problems, error, load, left, right, page, sortParams, filterParams };
 };
 
 export default getProblems;

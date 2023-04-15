@@ -27,10 +27,10 @@
           <span class="material-symbols-outlined tuneicon">tune</span>
           filter
         </div>
-        <div class="search--wrapper">
-          <span class="material-symbols-outlined searchicon">search</span>
-          <input class="search" type="text" placeholder="search..." />
-        </div>
+        <form class="search--wrapper" @submit.prevent="search">
+          <span class="material-symbols-outlined searchicon" >search</span>
+          <input class="search" type="text" placeholder="search..." v-model="searchData"/>
+        </form>
         <div class="pagineate">
           <button class="page_left" @click="left">&lt;</button>
           <span class="count">{{ page }}</span>
@@ -56,7 +56,7 @@ import ProblemCard from "@/components/ProblemCard.vue";
 import LoadingSpinner from "@/components/LoadingSpinner.vue";
 import { useProblemsStore } from "@/store";
 import { storeToRefs } from "pinia";
-import { watch } from "vue";
+import { ref } from "vue";
 
 export default {
   components: { ProblemCard, LoadingSpinner },
@@ -64,11 +64,17 @@ export default {
     const store = useProblemsStore();
     const { problems, error, page } = storeToRefs(store);
     const { load, left, right } = store;
+    const searchData = ref("")
     if (error.value) {
       load();
     }
 
-    return { problems, error, left, right, page };
+    const search = () => {
+      console.log(searchData.value)
+      load("",'title ~ "%'+searchData.value+'%"')
+    }
+
+    return { problems, error, left, right, page, search, searchData};
   },
 };
 </script>
