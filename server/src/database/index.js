@@ -1,6 +1,6 @@
-import PocketBase from 'pocketbase';
+//import PocketBase from 'pocketbase';
 
-const pb = new PocketBase('http://140.238.71.54');
+//const pb = new PocketBase('http://140.238.71.54');
 
 //const test = await pb.collection('problem').getList(1,1, {expand: 'tag'})
 //console.log(test.items.map(x=>x.expand.tag.map(y=>y.title)))
@@ -45,4 +45,5 @@ for(let i = 0; i < 1; i++)
   await pb.collection('problem').create(obj)
 }
 */
+const pb = ()=>{}
 export default pb;

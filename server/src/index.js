@@ -10,10 +10,6 @@ import {exec, spawn} from 'child_process'
 //const fs = require('fs');
 import fs from 'fs'
 
-//const db = require('./database')
-import db from './database/index.js'
-
-
 const app = express()
 
 app.use(bp.json())
@@ -31,8 +27,9 @@ const runPythonTests = async (testcases, answers) => {
     let results = []
 
     for(let i = 0; i < testcases.length; i++) {
+      let python;
       let result = await new Promise((resolve, _reject) => { 
-        const python = spawn('python', ['code.py']);
+        python = spawn('python', ['code.py']);
 
         setTimeout(()=>{resolve("TLE")},1000) // time limit exceeded
 
@@ -68,6 +65,8 @@ const runPythonTests = async (testcases, answers) => {
       {
         //break;
       }
+
+      python.kill('SIGINT')
     }
 
     return results;

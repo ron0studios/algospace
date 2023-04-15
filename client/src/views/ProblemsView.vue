@@ -45,17 +45,7 @@
           :key="problem.id"
           :data="problem"
         />
-
-        <!--
-      <ProblemCard name="All work no play" difficulty="INSANE"/>
-      <ProblemCard name="Block Palindromes" difficulty="EASY"/>
-      <ProblemCard name="Window Tiling" difficulty="MEDIUM"/>
-      <ProblemCard name="Parking" difficulty="HARD"/>
-      <ProblemCard name="Modern Art" difficulty="MEDIUM"/>
-      <ProblemCard name="False Plan" difficulty="HARD"/>
-      <ProblemCard name="Increasing Passwords" difficulty="INSANE"/>
-      <ProblemCard name="String rewriting" difficulty="INSANE"/>
-      --></div>
+      </div>
       <LoadingSpinner v-else />
     </div>
   </div>
