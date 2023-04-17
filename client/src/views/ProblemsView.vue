@@ -71,7 +71,9 @@ export default {
 
     const search = () => {
       console.log(searchData.value)
-      load("",'title ~ "%'+searchData.value+'%"')
+      const string = [...searchData.value].map(x => x+'%').join('')
+      console.log(string)
+      load("",'title ~ "%'+string+'"')
     }
 
     return { problems, error, left, right, page, search, searchData};

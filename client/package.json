@@ -17,7 +17,6 @@
     "@heroicons/vue": "^2.0.17",
     "@uiw/codemirror-theme-dracula": "^4.19.9",
     "codemirror": "^6.0.1",
-    "firebase": "^9.15.0",
     "katex": "^0.16.4",
     "marked": "^4.3.0",
     "marked-katex-extension": "^1.0.2",
