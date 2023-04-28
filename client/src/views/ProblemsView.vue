@@ -33,7 +33,9 @@
         </form>
         <div class="pagineate">
           <button class="page_left" @click="left">&lt;</button>
-          <span @click="jump(x)" v-for="x in tot_pages" :key="x" class="pagination--button" :class="page === x ? 'highlight' : 'light-theme'">{{ x }}</span>
+          <div class="pagination--array">
+            <span @click="jump(x)" v-for="x in tot_pages" :key="x" class="pagination--button" :class="page === x ? 'highlight' : 'light-theme'">{{ x }}</span>
+          </div>
           <button class="page_right" @click="right">></button>
         </div>
         <div class="tags"></div>
@@ -91,15 +93,27 @@ export default {
 <style scoped>
 
 .highlight {
-  color: yellow;
-  background: blue;
+  background: var(--highlight) !important;
+}
+
+.pagination--button:hover {
+  background: var(--complement-light);
 }
 .pagination--button {
-  color: blue;
-  margin: auto 0;
-  padding: 0 20px;
-  color: white;
-  font-weight: bold;
+  border-style: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: var(--background);
+  background: var(--complement-dark);
+  border-radius: 10px;
+  display: inline-block;
+  font-weight: 900;
+}
+
+.pagination--array {
+  display: inline-flex;
+  gap: 10px;
+  margin: auto 10px;
 }
 .count {
   margin: auto 20px;
