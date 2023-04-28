@@ -105,7 +105,37 @@ const getProblems = () => {
     loading = false;
   };
 
-  return { problems, error, load, left, right, page, sortParams, filterParams };
+
+  const jump = async (pageNo) => {
+    if (loading) {
+      console.log("blocked");
+      return;
+    }
+    loading = true;
+
+    try {
+      page.value = pageNo-1;
+
+      const res = await pb
+      .collection("problem")
+      .getList(page.value, pagecount.value, {expand: "tag", sort: sortParams.value, filter: filterParams.value});
+      problems.value = res.items.map((x) => {
+        x.tag = x.expand.tag.map((y) => y.title);
+        return x;
+      });
+    } catch(err) {
+      error.value = err.message;
+      console.log(err.message)
+    }
+
+    if (!error.value) {
+      page.value += 1;
+    }
+
+    loading = false;
+  };
+
+  return { problems, error, load, left, right, jump, page, sortParams, filterParams, tot_pages };
 };
 
 export default getProblems;

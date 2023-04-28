@@ -33,7 +33,7 @@
         </form>
         <div class="pagineate">
           <button class="page_left" @click="left">&lt;</button>
-          <span class="count">{{ page }}</span>
+          <span @click="jump(x)" v-for="x in tot_pages" :key="x" class="pagination--button" :class="page === x ? 'highlight' : 'light-theme'">{{ x }}</span>
           <button class="page_right" @click="right">></button>
         </div>
         <div class="tags"></div>
@@ -62,8 +62,8 @@ export default {
   components: { ProblemCard, LoadingSpinner },
   setup() {
     const store = useProblemsStore();
-    const { problems, error, page } = storeToRefs(store);
-    const { load, left, right } = store;
+    const { problems, error, page, tot_pages } = storeToRefs(store);
+    const { load, left, right, jump } = store;
     const searchData = ref("")
     if (error.value) {
       load();
@@ -76,7 +76,8 @@ export default {
       load("",'title ~ "%'+string+'"')
     }
 
-    return { problems, error, left, right, page, search, searchData};
+
+    return { problems, error, left, right, page, search, searchData, tot_pages, jump};
   },
 };
 </script>
@@ -88,6 +89,18 @@ export default {
 </style>
 
 <style scoped>
+
+.highlight {
+  color: yellow;
+  background: blue;
+}
+.pagination--button {
+  color: blue;
+  margin: auto 0;
+  padding: 0 20px;
+  color: white;
+  font-weight: bold;
+}
 .count {
   margin: auto 20px;
   color: white;
