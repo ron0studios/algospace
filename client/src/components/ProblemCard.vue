@@ -92,6 +92,10 @@ export default {
   display: inline-block;
 }
 
+.pill:hover {
+  background: var(--background-dark);
+}
+
 h1.title {
   font-size: 25px;
   margin-top: 10px;
@@ -111,6 +115,10 @@ h1.title {
   border-radius: 10px;
   border-left: 10px solid gray;
   text-decoration: none;
+}
+
+.problem-card:hover {
+  background: var(--primary-4);
 }
 
 .card__content {
