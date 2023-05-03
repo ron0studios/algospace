@@ -1,14 +1,6 @@
 <template>
   <div class="problems">
     <div class="panel__problems--wrapper">
-    <div class="hero">
-      <div class="typewriter">
-        <h1>Problems</h1>
-      </div>
-      <div class="subtitle">
-        Explore the catalogue of programming questions
-      </div>
-    </div>
       <div class="pickers">
         <div class="card">
           <div class="icon">
@@ -40,11 +32,11 @@
           <input class="search" type="text" placeholder="search..." v-model="searchData"/>
         </form>
         <div class="pagineate">
-          <button class="pagination--button pagechange" @click="left">&lt;</button>
+          <button class="page_left" @click="left">&lt;</button>
           <div class="pagination--array">
             <span @click="jump(x)" v-for="x in tot_pages" :key="x" class="pagination--button" :class="page === x ? 'highlight' : 'light-theme'">{{ x }}</span>
           </div>
-          <button class="pagination--button pagechange" @click="right">></button>
+          <button class="page_right" @click="right">></button>
         </div>
         <div class="tags"></div>
       </div>
@@ -99,50 +91,17 @@ export default {
 </style>
 
 <style scoped>
-.hero {
-  height: 20vh;
-  width: 100%;
-  background: var(--background-dark);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero h1 {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 4vw;
-  color: white;
-  margin: 0.8vw;
-}
-
-.subtitle {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1vw;
-  color: var(--complement-dark);
-  display: block;
-  width: 1000px;
-  text-align: center;
-}
 
 .highlight {
   background: var(--highlight) !important;
 }
 
-.pagination--button:hover:not(.highlight) {
-  background: var(--complement-light) !important;
+.pagination--button:hover {
+  background: var(--complement-light);
 }
-.pagination--button:hover.highlight{
-  background: var(--highlight-dark) !important;
-}
-.pagination--button:hover.pagechange{
-  background: var(--complement-dark) !important;
-}
-
-
-.problems .pagination--button {
+.pagination--button {
   border-style: none;
-  padding: 0.2vw 0.5vw;
+  padding: 5px 10px;
   cursor: pointer;
   color: var(--background);
   background: var(--complement-dark);
@@ -151,18 +110,26 @@ export default {
   font-weight: 900;
 }
 
-.problems .pagechange {
-  background: var(--complement-light);
-}
 .pagination--array {
   display: inline-flex;
-  gap: 0.5vw;
-  margin: auto 0.5vw;
+  gap: 10px;
+  margin: auto 10px;
 }
 .count {
-  margin: auto 1vw;
+  margin: auto 20px;
   color: white;
   font-weight: bold;
+}
+.problems .page_left,
+.page_right {
+  border-style: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: var(--background);
+  background: var(--complement-light);
+  border-radius: 10px;
+  display: inline-block;
+  font-weight: 900;
 }
 
 .problems .pagineate {
@@ -170,14 +137,13 @@ export default {
 
 .problems .card .timer {
   position: absolute;
-  bottom: -0.5vw;
-  left: 1.5vw;
-  font-size: 0.6vw;
+  bottom: -10px;
+  left: 2em;
   color: rgb(0, 0, 0);
   font-weight: bold;
   background: skyblue;
-  border: solid 0.2em rgb(29, 16, 46);
-  box-shadow: 0px 0px 0px 0.2em rgb(29, 16, 46);
+  border: solid 3px rgb(29, 16, 46);
+  box-shadow: 0px 0px 0px 3px rgb(29, 16, 46);
   border-radius: 10px;
   padding: 5px;
 }
@@ -186,12 +152,15 @@ export default {
   background: var(--highlight-dark); /*rgb(219, 204, 255);*/
 }
 
+.problems .card:hover .icon > img {
+}
+
 .problems .card:hover > p {
   color: rgb(29, 16, 46);
 }
 
 .problems .card > p {
-  font-size: 1vw;
+  font-size: 24px;
   font-weight: 700;
   color: var(--background);
 }
@@ -212,7 +181,7 @@ export default {
 
 .pickers {
   width: 100%;
-  max-width: 35vw;
+  max-width: 900px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -220,7 +189,7 @@ export default {
 
 .pickers .card {
   cursor: pointer;
-  width: calc(100% / 3);
+  width: calc(100% / 3 - 30px);
   aspect-ratio: 1 / 1;
   background: var(--highlight); /*#2e296b; */
   margin: 15px;
@@ -232,7 +201,7 @@ export default {
 }
 
 .search {
-  width: 10vw;
+  width: 200px;
   background-color: transparent;
   border: none;
   outline: none;
@@ -274,8 +243,8 @@ export default {
 
 .filters {
   width: 100%;
-  max-width: 35vw;
-  margin: 0.5vw auto;
+  max-width: 900px;
+  margin: 10px auto;
   display: flex;
   align-items: center;
 }
@@ -283,7 +252,7 @@ export default {
 .line {
   border-top: 2px solid #3b3d5c;
   width: 100%;
-  max-width: 35vw;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -293,19 +262,27 @@ export default {
   padding-top: 50px;
 }
 
+.panel__filter {
+  display: flex;
+  background: blue;
+}
+
+.panel__filter__content {
+  padding: 25% 1em;
+}
+
 .panel__problems {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  grid-auto-rows: max(100px, 6vw);
+  grid-auto-rows: 100px;
   gap: 1em;
   padding: 2em;
   padding-top: 1em;
   box-sizing: border-box;
   width: 100%;
-  max-width: 35vw;
+  max-width: 900px;
   margin: 0 auto;
 }
-
 
 .panel__problems--wrapper {
   overflow: scroll;
@@ -316,7 +293,7 @@ export default {
 
 .pill {
   margin-right: 1em;
-  padding: 5px 0.5vw;
+  padding: 5px 10px;
   cursor: pointer;
   color: var(--background);
   background: var(--complement-light);

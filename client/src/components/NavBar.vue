@@ -12,6 +12,9 @@
         >
       </div>
       <div class="header--right">
+        <div class="searchbar">
+          <span class="material-symbols-outlined">search</span>search here...
+        </div>
         <div class="bar"></div>
         <router-link class="header__logo" :to="{ name: 'home' }">
           <img class="header__logo--image userlogo" src="../assets/testuserlogo.png" />
@@ -54,7 +57,7 @@ body {
 
 .header__content {
   margin: 0 auto;
-  width: max(50%,800px);
+  width: 1400px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -128,12 +131,26 @@ body {
   padding: 3.5px 1em;
 }
 
+.searchbar {
+  max-height: 35px;
+  font-size: 17.5px;
+  width: 300px;
+  background: var(--primary-3);
+  margin: auto 1em;
+  padding: 7.5px;
+  border-radius: 15px;
+  color: var(--primary-5);
+}
+.searchbar span {
+  text-align: center;
+}
 </style>
 
 <style>
 .material-symbols-outlined {
   color: white;
   font-size: 21px;
+  margin-right: 0.5em;
   vertical-align: middle;
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
