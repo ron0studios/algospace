@@ -1,28 +1,26 @@
 <template>
-  <div class="home">
-    <div class="hero">
-      <div class="typewriter">
-        <h1 :class="'typewriter-' + displayTextArrayIndex">{{ typeValue }}</h1>
-      </div>
-      <div class="subtitle">
-        A coding platform tailored for UK contests and beyond.
-      </div>
+  <div class="hero">
+    <div class="typewriter">
+      <h1 :class="'typewriter-' + displayTextArrayIndex">{{ typeValue }}</h1>
     </div>
-    <div class="slide1">
-      <div class="content">
-        <h2>A curated set of problem guides</h2>
-        <p>
-          With Algospace, you can find clear-cut solutions with detailed
-          explanations, for problems spanning across the BIO and IOI syllabus.
-        </p>
-      </div>
-      <div class="content__image">
-        <img src="@/assets/400x300.jpg" />
-      </div>
+    <div class="subtitle">
+      A coding platform tailored for UK contests and beyond.
     </div>
-    <div class="slide2">
-      <h1>find the problem best suited for you</h1>
+  </div>
+  <div class="slide1">
+    <div class="content">
+      <h2>A curated set of problem guides</h2>
+      <p>
+        With Algospace, you can find clear-cut solutions with detailed
+        explanations, for problems spanning across the BIO and IOI syllabus.
+      </p>
     </div>
+    <div class="content__image">
+      <img src="@/assets/400x300.jpg" />
+    </div>
+  </div>
+  <div class="slide2">
+    <h1>find the problem best suited for you</h1>
   </div>
 </template>
 
@@ -86,7 +84,7 @@ export default {
 </script>
 
 <style>
-.home .hero {
+.hero {
   height: 50vh;
   width: 100%;
   background: #241e33;
@@ -95,9 +93,9 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.home .hero h1 {
+.hero h1 {
   font-family: "Courier New", Courier, monospace;
-  font-size: 5vw;
+  font-size: 100px;
   color: white;
   overflow: hidden;
   border-right: 0.1em solid orange;
@@ -107,14 +105,14 @@ export default {
   margin: 50px;
 }
 
-.home .hero h1:empty::before {
+.hero h1:empty::before {
   content: "";
   display: inline-block;
 }
 
-.home .subtitle {
+.subtitle {
   font-family: "Courier New", Courier, monospace;
-  font-size: 1vw;
+  font-size: 25px;
   color: white;
   display: block;
   width: 1000px;
@@ -131,7 +129,7 @@ export default {
   }
 }
 
-.home .slide1 {
+.slide1 {
   height: 70vh;
   width: 100%;
   background: white;
@@ -139,12 +137,12 @@ export default {
   align-items: center;
 }
 
-.home .slide1 .content {
+.slide1 .content {
   width: 30%;
   margin: 10%;
 }
 
-.home .slide2 {
+.slide2 {
   height: 70vh;
   width: 100%;
   background: white;
