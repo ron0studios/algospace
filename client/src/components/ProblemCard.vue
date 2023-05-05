@@ -113,6 +113,10 @@ h1.title {
   text-decoration: none;
 }
 
+.problem-card:hover {
+  background: var(--primary-4);
+}
+
 .card__content {
   padding: 0 10px;
   height: 100%;
