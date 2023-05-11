@@ -188,7 +188,7 @@ export default {
 }
 
 .cm-editor {
-  height: 100%;
+  height: calc(100% - 64px); /*bad solution*/
   font-size: 14px;
 }
 .cm-scroller {
@@ -219,7 +219,6 @@ export default {
   background-color: lightgray;
   width: 50px;
   height: 70px;
-  border-radius: 10px;
   text-align: center;
   border-top: solid 10px black;
   display: flex;

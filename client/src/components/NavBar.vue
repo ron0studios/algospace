@@ -150,7 +150,6 @@ body {
 .material-symbols-outlined {
   color: white;
   font-size: 21px;
-  margin-right: 0.5em;
   vertical-align: middle;
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
