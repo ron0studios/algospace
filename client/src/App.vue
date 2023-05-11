@@ -16,11 +16,16 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 #app {
-  font-family: Cantarell, Avenir, Arial, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
+
 :root {
+  --background-dark: #120e1d;
   --background: #241e33;
+  --background-light: #2f234e;
   --primary-0: #301142;
   --primary-1: #670f99;
   --primary-2: #9100e6;
@@ -32,4 +37,5 @@ export default {
   --complement-light: #17e678;
   --complement-dark: #08994b;
 }
+
 </style>

@@ -17,11 +17,12 @@
     </div>
     <div class="submit">
       <div class="buttons">
-        <button @click="submitForm">
+        <button class="button" @click="submitForm">
           <BoltIcon style="height: 30px" />
           submit
         </button>
         <select
+          class="button"
           required
           title="programming language"
           v-model="language"
@@ -32,9 +33,12 @@
           <option value="py3">Python 3</option>
           <option value="js">Javascript</option>
         </select>
-        <ToggleDarkLight @click="toggleTheme" />
+        <ToggleDarkLight class="button" @click="toggleTheme" />
       </div>
       <codemirror class="editor" v-model="code" :extensions="extensions" />
+      <div class="output">
+        <button class="button">Output</button>
+      </div>
     </div>
   </div>
 </template>
@@ -158,6 +162,34 @@ export default {
 </script>
 
 <style>
+
+.submit .button {
+  border: none;
+  display: flex;
+  align-items: center;
+  background: var(--background-light);
+  color: var(--primary-5);
+  font-weight: 900;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.submit .button:hover {
+  filter: brightness(150%);
+}
+
+.output {
+  height: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  background-color: #1d192b;
+  display: flex;
+  gap: 10px;
+
+}
+
 .statement--inner h1:after {
   content: " ";
   display: block;
@@ -171,15 +203,9 @@ export default {
   border-radius: 10px;
 }
 
-.buttons > button {
-  border: none;
-  display: flex;
-  align-items: center;
-}
-
 .buttons {
   height: 50px;
-  background-color: #212330;
+  background-color: #1d192b;
   display: flex;
   gap: 10px;
   padding-left: 10px;
@@ -268,7 +294,7 @@ export default {
   margin: 2em;
   padding: 1em;
   border-radius: 0.5em;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 18px;
   background: whitesmoke;
 }

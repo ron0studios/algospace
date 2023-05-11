@@ -5,6 +5,7 @@ import { basicSetup } from "codemirror";
 import VueCodemirror from "vue-codemirror";
 
 import { createPinia } from "pinia";
+import './assets/fonts/font.css'
 
 createApp(App)
   .use(createPinia())

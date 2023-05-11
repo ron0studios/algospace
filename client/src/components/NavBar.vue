@@ -46,14 +46,6 @@ body {
   /*padding-top: 50px;*/
 }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin: 0;
-  padding: 0;
-}
 
 .header__content {
   margin: 0 auto;
@@ -101,7 +93,6 @@ body {
 }
 
 .header__link {
-  font-family: "open sans";
   text-decoration: none;
   color: white;
   padding: 0 1em;

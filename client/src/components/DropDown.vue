@@ -54,7 +54,6 @@ export default {
 .dropdown {
   user-select: none;
   cursor: pointer;
-  font-family: "open sans";
   text-decoration: none;
   color: white;
   padding: 0 1em;
